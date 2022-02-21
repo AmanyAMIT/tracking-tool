@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Material;
 use App\Models\Admin\TaskCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,5 +25,10 @@ class Diploma extends Model
     public function taskcategories()
     {
         return $this->hasMany(TaskCategory::class, 'diploma_id' , 'id');
+    }
+
+    public function materials()
+    {
+        return $this->hasMany(Material::class, 'diploma_id' , 'id');
     }
 }
