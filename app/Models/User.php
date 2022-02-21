@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\SolvedTask;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,8 +46,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role()
+    public function solved_tasks()
     {
-        return $this->belongsTo(Role::class, 'role_id' , 'id');
+        return $this->hasMany(SolvedTask::class, 'user_id' , 'id');
     }
 }

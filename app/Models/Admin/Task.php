@@ -14,7 +14,6 @@ class Task extends Model
         'marks',
         'descriptions',
         'requirements',
-        'status',
         'task_category_id',
         'diploma_id',
         'client_id',
@@ -23,5 +22,10 @@ class Task extends Model
     public function task_category()
     {
         return $this->belongsTo(TaskCategory::class, 'task_category_id' , 'id');
+    }
+
+    public function solved_tasks()
+    {
+        return $this->belongsTo(SolvedTask::class, 'task_id' , 'id');
     }
 }
