@@ -1,0 +1,6 @@
+@include('client.includes.header')
+@include('client.includes.top-navbar')
+@include('client.includes.sidebar')
+@yield('content')
+@include('client.includes.footer')
+@include('client.includes.scripts')

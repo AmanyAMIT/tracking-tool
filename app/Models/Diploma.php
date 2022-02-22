@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Admin\ClientDiplomas;
 use App\Models\Admin\Group;
 use App\Models\Admin\Material;
+use App\Models\Admin\Round;
+use App\Models\Admin\Task;
 use App\Models\Admin\TaskCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,12 +18,15 @@ class Diploma extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'client_id'
     ];
 
     public function client()
     {
         return $this->belongsTo(Client::class, 'client_id' , 'id');
+    }
+    public function clientDiploma()
+    {
+        return $this->belongsTo(ClientDiplomas::class, 'diploma_id' , 'id');
     }
 
     public function taskcategories()
@@ -36,5 +42,13 @@ class Diploma extends Model
     public function groups()
     {
         return $this->hasMany(Group::class, 'diploma_id' , 'id');
+    }
+    public function rounds()
+    {
+        return $this->hasMany(Round::class, 'diploma_id' , 'id');
+    }
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'diploma_id' , 'id');
     }
 }

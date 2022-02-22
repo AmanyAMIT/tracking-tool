@@ -21,7 +21,6 @@ class ClientSeeder extends Seeder
             'name' => 'client',
             'email' => 'client@info.com',
             'password' => Hash::make('client123'),
-            'role_id' => '2'
         ]);
     }
 }

@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->string('group_name');
-            $table->string('round_no');
             $table->integer('client_id');
             $table->integer('diploma_id');
             $table->timestamps();

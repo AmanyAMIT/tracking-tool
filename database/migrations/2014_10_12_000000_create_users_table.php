@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            //Adding a Default Value for the Role_id Column of 3 Which Referes to Student
-            $table->integer('role_id')->default('3');
             $table->integer('diploma_id');
             $table->integer('client_id');
             $table->rememberToken();

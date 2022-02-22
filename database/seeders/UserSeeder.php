@@ -21,7 +21,6 @@ class UserSeeder extends Seeder
             'name' => 'student',
             'email' => 'student@info.com',
             'password' => Hash::make('student123'),
-            'role_id' => '3',
             'diploma_id' => '1',
             'client_id' => '1',
         ]);

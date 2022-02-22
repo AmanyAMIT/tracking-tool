@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            //Adding a Default Value for the Role_id Column of 1 Which Referes to Admin
-            $table->integer('role_id')->default('1');
             $table->integer('client_id');
             $table->timestamps();
         });

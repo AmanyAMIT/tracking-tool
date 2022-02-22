@@ -12,17 +12,20 @@ class Group extends Model
     use HasFactory;
     protected $fillable = [
         'group_name',
-        'round_no',
         'client_id',
         'diploma_id'
     ];
 
-    public function group()
+    public function client()
     {
         return $this->belongsTo(Client::class, 'client_id' , 'id');
     }
     public function diploma()
     {
         return $this->belongsTo(Diploma::class, 'diploma_id' , 'id');
+    }
+    public function rounds()
+    {
+        return $this->hasMany(Round::class, 'group_id' , 'id');
     }
 }

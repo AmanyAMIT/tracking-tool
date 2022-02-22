@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\TaskCategory;
+use App\Models\Diploma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TaskCategoryController extends Controller
 {
@@ -15,6 +18,8 @@ class TaskCategoryController extends Controller
     public function index()
     {
         //
+        $categories = TaskCategory::cursorPaginate(5);
+        return view('admin.tasksCategories.AllCategories' , compact('categories'));
     }
 
     /**
@@ -25,6 +30,8 @@ class TaskCategoryController extends Controller
     public function create()
     {
         //
+        $diplomas = Diploma::all();
+        return view('admin.tasksCategories.AddCategory' , compact('diplomas'));
     }
 
     /**
@@ -36,6 +43,19 @@ class TaskCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'name' => ['required'],
+            'diploma_id' => ['required'],
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $taskcategories = new TaskCategory();
+        $taskcategories->name = $request->input('name');
+        $taskcategories->diploma_id = $request->input('diploma_id');
+        $taskcategories->save();
+        return redirect()->back()->with(['success' => 'New Category was added']);
     }
 
     /**

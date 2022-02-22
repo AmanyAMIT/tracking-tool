@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('taskcategories', function (Blueprint $table) {
+        Schema::create('task_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('diploma_id');

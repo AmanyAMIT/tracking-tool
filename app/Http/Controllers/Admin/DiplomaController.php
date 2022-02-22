@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
+use App\Models\Diploma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DiplomaController extends Controller
 {
@@ -15,6 +18,8 @@ class DiplomaController extends Controller
     public function index()
     {
         //
+        $diplomas = Diploma::cursorPaginate(5);
+        return view('admin.diplomas.AllDiplomas' , compact('diplomas'));
     }
 
     /**
@@ -25,6 +30,7 @@ class DiplomaController extends Controller
     public function create()
     {
         //
+        return view('admin.diplomas.AddDiploma');
     }
 
     /**
@@ -36,6 +42,17 @@ class DiplomaController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'name' => ['required'],
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $diploma = new Diploma();
+        $diploma->name = $request->input('name');
+        $diploma->save();
+        return redirect()->back()->with(['success' => 'New Diploma was added']);
     }
 
     /**

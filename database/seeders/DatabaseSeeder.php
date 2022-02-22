@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin\SolvedTask;
+use App\Models\Diploma;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,10 +18,14 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            RoleSeeder::class,
             UserSeeder::class,
             AdminSeeder::class,
-            ClientSeeder::class
+            ClientSeeder::class,
+            GroupSeeder::class,
+            TaskSeeder::class,
+            TaskCategorySeeder::class,
+            SolvedTaskSeeder::class,
+            DiplomaSeeder::class
         ]);
     }
 }

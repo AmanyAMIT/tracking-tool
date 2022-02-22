@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('task_id');
+            $table->binary('task_file');
             $table->integer('status')->default('0');
             $table->timestamps();
         });

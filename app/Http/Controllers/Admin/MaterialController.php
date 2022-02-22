@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Material;
+use App\Models\Diploma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MaterialController extends Controller
 {
@@ -15,6 +18,8 @@ class MaterialController extends Controller
     public function index()
     {
         //
+        $materials = Material::cursorPaginate(5);
+        return view('admin.materials.AllMaterials' , compact('materials'));
     }
 
     /**
@@ -25,6 +30,8 @@ class MaterialController extends Controller
     public function create()
     {
         //
+        $diplomas = Diploma::all();
+        return view('admin.materials.AddMaterial' , compact('diplomas'));
     }
 
     /**
@@ -36,7 +43,32 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'title' => ['required'],
+            'material_docs' => ['required'],
+            'diploma_id' => ['required']
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $material = new Material();
+        $material->title = $request->input('title');
+        $material->diploma_id = $request->input('diploma_id');
+        if($request->hasFile('material_docs')){
+            $file = $request->file('material_docs');
+            $name= $file->getClientOriginalName();
+            $filename = $name;
+            $file->move('uploads/Materials/' , $filename);
+            $material->material_docs = $filename;
+        }
+        else{
+            return $request;
+            $material->material_docs = '';
     }
+    $material->save();
+    return redirect()->back()->with(['success' => 'New Material was added']);
+}
 
     /**
      * Display the specified resource.

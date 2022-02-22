@@ -11,10 +11,11 @@ class Material extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'material_docs',
         'diploma_id'
     ];
 
-    public function material()
+    public function diploma()
     {
         return $this->belongsTo(Diploma::class, 'diploma_id' , 'id');
     }
