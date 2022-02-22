@@ -4,3 +4,4 @@
 @yield('content')
 @include('admin.includes.footer')
 @include('admin.includes.scripts')
+@include('admin.includes.StepsScriptes')

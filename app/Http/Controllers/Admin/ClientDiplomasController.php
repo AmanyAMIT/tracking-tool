@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\ClientDiplomas;
 use App\Models\Diploma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ClientDiplomasController extends Controller
@@ -30,7 +31,7 @@ class ClientDiplomasController extends Controller
     {
         //
         $diplomas = Diploma::all();
-        return view('admin.clients.AddClient' , compact('diplomas'));
+        return view('admin.clients.AddClient' , compact('diplomas' , 'last'));
     }
 
     /**

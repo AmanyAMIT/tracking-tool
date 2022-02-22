@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\ClientDiplomas;
 use App\Models\Client;
 use App\Models\Diploma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,8 +33,10 @@ class ClientController extends Controller
     public function create()
     {
         //
-        // $diplomas = Diploma::all();
-        return view('admin.clients.AddClient');
+        $diplomas = Diploma::all();
+        $last = Client::latest()->first()->id;
+        // return $last ; 
+        return view('admin.clients.AddClient' , compact('diplomas' , 'last'));
     }
 
     /**
@@ -61,6 +65,23 @@ class ClientController extends Controller
         return redirect()->back()->with(['success' => 'New Client was added']);
     }
 
+
+    public function StoreClientDiploma(Request $request) {
+        // $validator = Validator::make($request->all() , [
+        //     'diploma_id' => ['required'],
+        //     'client_id' => ['required'],
+        // ]);
+        // if($validator->fails())
+        // {
+        //     return redirect()->back()->withErrors($validator)->withInput($request->all());
+        // }
+
+        $client = new ClientDiplomas();
+        $client->diploma_id = $request->input('diploma_id');
+        $client->client_id = $request->input('client_id');
+        $client->save();
+        return redirect()->back()->with(['success' => 'New Client was added']);
+    }
     /**
      * Display the specified resource.
      *

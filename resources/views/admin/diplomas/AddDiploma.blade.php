@@ -39,7 +39,7 @@
                                             <option value="{{$client->id}}">{{$client->name}}</option>
                                         @endforeach
                                         </select>
-                                    
+                                        <input type="submit" value="Add Diploma" class="btn btn-primary btn-wide mt-5">
                                 </div> --}}
                                 
                         </section>

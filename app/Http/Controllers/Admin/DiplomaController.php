@@ -30,7 +30,8 @@ class DiplomaController extends Controller
     public function create()
     {
         //
-        return view('admin.diplomas.AddDiploma');
+        $clients = Client::all();
+        return view('admin.diplomas.AddDiploma' , compact('clients'));
     }
 
     /**
@@ -44,6 +45,7 @@ class DiplomaController extends Controller
         //
         $validator = Validator::make($request->all() , [
             'name' => ['required'],
+            // 'client_id' => ['required']
         ]);
         if($validator->fails())
         {
@@ -51,6 +53,7 @@ class DiplomaController extends Controller
         }
         $diploma = new Diploma();
         $diploma->name = $request->input('name');
+        // $diploma->client_id = $request->input('client_id');
         $diploma->save();
         return redirect()->back()->with(['success' => 'New Diploma was added']);
     }

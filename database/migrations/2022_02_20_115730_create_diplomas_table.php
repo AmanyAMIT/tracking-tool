@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('diplomas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('client_id');
             $table->timestamps();
         });
     }

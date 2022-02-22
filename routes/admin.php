@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\CustomAuthController;
 use App\Models\Admin\ClientDiplomas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Psr\Http\Client\ClientInterface;
 
 Route::get('dashboard', [CustomAuthController::class , 'dashboard'])->middleware('auth:admin')->name('dashboard');
 
@@ -26,4 +27,5 @@ Route::resource('/rounds' , RoundController::class);
 Route::resource('/taskcategories' , TaskCategoryController::class);
 Route::resource('/tasks' , TaskController::class);
 Route::resource('/materials' , MaterialController::class);
+Route::post('/clinetDiplomad' , [ClientController::class , 'StoreClientDiploma'])->name('StoreClientDiploma');
 Auth::routes();

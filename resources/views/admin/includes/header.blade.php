@@ -20,6 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="{{URL::asset('AdminPanel/vendors/styles/icon-font.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{URL::asset('AdminPanel/src/plugins/datatables/css/dataTables.bootstrap4.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{URL::asset('AdminPanel/src/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{URL::asset('AdminPanel/src/plugins/jquery-steps/jquery.steps.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{URL::asset('AdminPanel/vendors/styles/style.css')}}">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
