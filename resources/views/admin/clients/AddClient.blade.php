@@ -115,27 +115,27 @@
                             </section>
                             <input type="submit" value="Add Client" class="btn btn-primary btn-wide mt-5 ml-3">
                             <!-- Step 2 -->
-                            <form action="{{ route('StoreClientDiploma') }}" method="POST">
-                                @csrf
-                                <h5>Assign Diploma</h5>
-                                <section>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Diploma</label>
-                                                <select class="form-control" name="diploma_id">
-                                                    @foreach($diplomas as $diploma)
-                                                        <option value="{{ $diploma->id }}">{{ $diploma->name }}
-                                                        </option>
-                                                    @endforeach
-                                                    <input type="hidden" name="client_id" id="" value="{{ $last }}">
-                                                </select>
-                                            </div>
+                        </form>
+                        <form action="{{ route('StoreClientDiploma') }}" method="POST">
+                            @csrf
+                            <h5>Assign Diploma</h5>
+                            <section>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Diploma</label>
+                                            <select class="form-control" name="diploma_id">
+                                                @foreach($diplomas as $diploma)
+                                                    <option value="{{ $diploma->id }}">{{ $diploma->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <input type="text" name="client_id" id="" value="{{ $last }}">
                                         </div>
                                     </div>
-                                </section>
-                                <input type="submit" value="Assign Diploma" class="btn btn-primary btn-wide mt-5 ml-3">
-                            </form>
+                                </div>
+                            </section>
+                            <input type="submit" value="Assign Diploma" class="btn btn-primary btn-wide mt-5 ml-3">
                         </form>
                     </div>
                 </div>
