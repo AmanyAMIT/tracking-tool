@@ -20,12 +20,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             AdminSeeder::class,
-            ClientSeeder::class,
+            // ClientSeeder::class,
             GroupSeeder::class,
             TaskSeeder::class,
             TaskCategorySeeder::class,
             SolvedTaskSeeder::class,
-            DiplomaSeeder::class
+            // DiplomaSeeder::class
         ]);
     }
 }

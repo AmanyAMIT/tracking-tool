@@ -21,6 +21,6 @@ class ClientDiplomas extends Model
     }
     public function clients()
     {
-        return $this->hasMany(Client::class, 'diploma_id' , 'id');
+        return $this->hasMany(Client::class, 'client_id' , 'id');
     }
 }

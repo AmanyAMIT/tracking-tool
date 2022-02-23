@@ -16,11 +16,11 @@ class GroupSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('groups')->insert([
-            'group_name' => 'PHP 68',
-            'client_id' => '1',
-            'diploma_id' => '1',
+        // DB::table('groups')->insert([
+        //     'group_name' => 'PHP 68',
+        //     'client_id' => '1',
+        //     'diploma_id' => '1',
             
-        ]);
+        // ]);
     }
 }

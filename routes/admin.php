@@ -28,4 +28,5 @@ Route::resource('/taskcategories' , TaskCategoryController::class);
 Route::resource('/tasks' , TaskController::class);
 Route::resource('/materials' , MaterialController::class);
 Route::post('/clinetDiplomad' , [ClientController::class , 'StoreClientDiploma'])->name('StoreClientDiploma');
+Route::post('/assignNewDiploma' , [ClientController::class , 'AssignNewDiploma'])->name('AssignNewDiploma');
 Auth::routes();

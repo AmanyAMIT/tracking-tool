@@ -14,7 +14,6 @@
                         <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">Diploam's Name</th>
-                                <th>Client</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>
                         </thead>

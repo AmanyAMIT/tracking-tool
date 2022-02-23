@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\ClientDiplomas;
+use App\Models\Admin\Group;
 use App\Models\Client;
 use App\Models\Diploma;
 use Illuminate\Http\Request;
@@ -34,9 +35,8 @@ class ClientController extends Controller
     {
         //
         $diplomas = Diploma::all();
-        $last = Client::latest()->first()->id;
-        // return $last ; 
-        return view('admin.clients.AddClient' , compact('diplomas' , 'last'));
+        // $last = Client::latest()->first()->id;
+        return view('admin.clients.AddClient' , compact('diplomas'));
     }
 
     /**
@@ -78,7 +78,8 @@ class ClientController extends Controller
 
         $client = new ClientDiplomas();
         $client->diploma_id = $request->input('diploma_id');
-        $client->client_id = $request->input('client_id');
+        // $client->client_id = $request->input('client_id');
+        $client->client_id = $last = Client::latest()->first()->id;
         $client->save();
         return redirect()->back()->with(['success' => 'New Client was added']);
     }
@@ -91,6 +92,11 @@ class ClientController extends Controller
     public function show($id)
     {
         //
+        $clientDiplomas = ClientDiplomas::all();
+        $diplomas = Diploma::all();
+        $groups = Group::all();
+        $client = Client::findOrFail($id);
+        return view('admin.clients.ClientDetails' , compact('client' , 'clientDiplomas' , 'diplomas' ,'groups'));
     }
 
     /**
@@ -101,7 +107,10 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        // 
+        $client = Client::findOrFail($id);
+        $diplomas = Diploma::all();
+        return view('admin.clients.EditClient' , compact('client' , 'diplomas'));
     }
 
     /**
@@ -114,6 +123,15 @@ class ClientController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function AssignNewDiploma(Request $request)
+    {
+        $client = new ClientDiplomas();
+        $client->diploma_id = $request->input('diploma_id');
+        $client->client_id = $request->input('client_id');
+        $client->save();
+        return redirect()->back()->with(['success' => 'New Diploma was assignes']);
     }
 
     /**

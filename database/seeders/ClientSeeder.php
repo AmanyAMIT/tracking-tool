@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,10 +18,11 @@ class ClientSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('clients')->insert([
-            'name' => 'client',
-            'email' => 'client@info.com',
-            'password' => Hash::make('client123'),
-        ]);
+        // DB::table('clients')->insert([
+        //     'name' => 'client',
+        //     'email' => 'client@info.com',
+        //     'password' => Hash::make('client123'),
+        //     'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+        // ]);
     }
 }

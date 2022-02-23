@@ -13,11 +13,11 @@ class DiplomaSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        //
-        DB::table('diplomas')->insert([
-            'name' => 'Fullstack PHP',
-        ]);
-    }
+    // public function run()
+    // {
+    //     //
+    //     DB::table('diplomas')->insert([
+    //         'name' => 'Fullstack PHP',
+    //     ]);
+    // }
 }
