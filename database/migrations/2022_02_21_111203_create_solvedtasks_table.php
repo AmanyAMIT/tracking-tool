@@ -20,6 +20,8 @@ return new class extends Migration
             $table->mediumText('task_file');
             $table->integer('status')->default('0');
             $table->string('comments');
+            $table->integer('client_id');
+            $table->integer('diploma_id');
             $table->timestamps();
         });
     }

@@ -27,7 +27,7 @@ class Task extends Model
         return $this->belongsTo(TaskCategory::class, 'task_category_id' , 'id');
     }
 
-    public function solved_tasks()
+    public function solvedTasks()
     {
         return $this->belongsTo(SolvedTask::class, 'task_id' , 'id');
     }

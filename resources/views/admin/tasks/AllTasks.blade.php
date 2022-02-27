@@ -39,9 +39,14 @@
                                             <i class="dw dw-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+                                            <a class="dropdown-item" href="{{route('tasks.edit' , $task->id)}}"><i class="dw dw-edit2"></i> Edit</a>
+                                            <form method="POST" action="{{route('tasks.destroy' , $task->id)}}">
+                                                @csrf
+                                                {{method_field('DELETE')}}
+                                                <label class="d-flex align-items-center justify-flex-end pl-3"><i class="dw dw-delete-3"></i> <input type="submit" class="dropdown-item pl-2" value="Delete">
+                                                </label>
+                                                
+                                            </form>
                                         </div>
                                     </div>
                                 </td>

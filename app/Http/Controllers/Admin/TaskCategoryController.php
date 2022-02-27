@@ -78,6 +78,9 @@ class TaskCategoryController extends Controller
     public function edit($id)
     {
         //
+        $diplomas = Diploma::all();
+        $category = TaskCategory::findOrFail($id);
+        return view('admin.tasksCategories.EditTaskCategory' , compact('category' , 'diplomas'));
     }
 
     /**
@@ -90,6 +93,19 @@ class TaskCategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'name' => ['required'],
+            'diploma_id' => ['required'],
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $category = TaskCategory::findOrFail($id);
+        $category->name = $request->input('name');
+        $category->diploma_id = $request->input('diploma_id');
+        $category->save();
+        return redirect()->back()->with(['success' => 'New Category was added']);
     }
 
     /**
@@ -101,5 +117,8 @@ class TaskCategoryController extends Controller
     public function destroy($id)
     {
         //
+        $taskcategory = TaskCategory::findOrFail($id);
+        $taskcategory->delete();
+        return redirect()->back()->with(['success' => 'Category has been deleted']);
     }
 }

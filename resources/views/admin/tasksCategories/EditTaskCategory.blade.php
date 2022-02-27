@@ -19,8 +19,9 @@
                     <h4 class="text-blue h4">Fill Category's Details</h4>
                 </div>
                 <div class="wizard-content">
-                    <form class="tab-wizard wizard-circle wizard" method="POST" action="{{route('taskcategories.store')}}">	
+                    <form class="tab-wizard wizard-circle wizard" method="POST" action="{{route('taskcategories.update' , $category->id)}}">	
                         @csrf
+                        {{method_field('PUT')}}
                         <h5>General Details</h5>
                         <section>
                             <div class="row">
@@ -28,30 +29,20 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Task Category's Name :</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name">
-                                        @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
+                                        <input type="text" class="form-control" name="name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Assign to a Diploma :</label>
-                                        <select class="custom-select form-control @error('diploma_id') is-invalid @enderror" name="diploma_id">
+                                        <select class="custom-select form-control" name="diploma_id">
                                         @foreach ($diplomas as $diploma)
                                             <option value="{{$diploma->id}}">{{$diploma->name}}</option>
                                         @endforeach
                                         </select>
-                                        @error('diploma_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
                                 </div>
                             </div>
-                            <input type="submit" value="Add Category" class="btn btn-primary btn-wide mt-5 ml-3">
+                            <input type="submit" value="Update Category" class="btn btn-primary btn-wide mt-5 ml-3">
                         </section>
                     </form>
                 </div>

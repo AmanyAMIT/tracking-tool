@@ -6,6 +6,7 @@ use App\Models\Admin\ClientDiplomas;
 use App\Models\Admin\Group;
 use App\Models\Admin\Material;
 use App\Models\Admin\Round;
+use App\Models\Admin\SolvedTask;
 use App\Models\Admin\Task;
 use App\Models\Admin\TaskCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -43,9 +44,9 @@ class Diploma extends Model
     {
         return $this->hasMany(Group::class, 'diploma_id' , 'id');
     }
-    public function rounds()
+    public function solvedTasks()
     {
-        return $this->hasMany(Round::class, 'diploma_id' , 'id');
+        return $this->hasMany(SolvedTask::class, 'diploma_id' , 'id');
     }
     public function tasks()
     {

@@ -32,6 +32,11 @@
                                                         alt="Picture">
                                                 </div>
                                             </div>
+                                            <div class="modal-footer">
+                                                <input type="submit" value="Update" class="btn btn-primary">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Close</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +53,7 @@
                                 </ul>
                             </div>
                             <div class="profile-info">
-                                <h5 class="mb-20 h5 text-blue">Related Information</h5>
+                                <h5 class="mb-20 h5 text-blue">Contact Information</h5>
                                 <ul>
                                     <li>
                                         <span>Created at:</span>
@@ -64,11 +69,17 @@
                                 <div class="tab height-100-p">
                                     <ul class="nav nav-tabs customtab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">More
-                                                Information</a>
+                                            <a class="nav-link active" data-toggle="tab" href="#timeline"
+                                                role="tab">Timeline</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Tasks</a>
+                                            <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Pedning Tasks</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#Passedtasks" role="tab">Passed Tasks</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#Failedtasks" role="tab">Failed Tasks</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#setting"
@@ -91,8 +102,7 @@
                                                             </li>
                                                             <li>
                                                                 <div class="task-name"><i
-                                                                        class="ion-ios-copy-outline"></i>
-                                                                    Diploma</div>
+                                                                        class="ion-ios-copy-outline"></i> Diploma</div>
                                                                 <p>This student is studying <strong
                                                                         class="task-time">{{ $student->diploma->name }}
                                                                         Diploma</strong></p>
@@ -110,178 +120,8 @@
                                             </div>
                                         </div>
                                         <!-- Timeline Tab End -->
-                                        <!-- Tasks Tab start -->
-                                        <div class="tab-pane fade" id="tasks" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
-                                                    <!-- Open Task start -->
-                                                    <div class="task-title row align-items-center">
-                                                        <div class="col-md-8 col-sm-12">
-                                                            <h5>Open Tasks</h5>
-                                                        </div>
-                                                    </div>
-                                                    @foreach ($tasks as $task)
-                                                    @if ($task->diploma_id == $student->diploma_id)
-                                                        <div class="profile-task-list pb-30">
-                                                        <ul>
-                                                            <li>
-                                                                <div class="task-type-pending">
-                                                                    <a href="">{{$task->name}}</a>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    @endif
-                                                    @endforeach
-                                                    <!-- Open Task End -->
-                                                    <!-- Close Task start -->
-                                                    <div class="task-title row align-items-center">
-                                                        <div class="col-md-12 col-sm-12">
-                                                            <h5>Closed Tasks</h5>
-                                                        </div>
-                                                    </div>
-                                                        @foreach ($solvedTasks as $solvedTask)
-                                                            <div class="profile-task-list close-tasks">
-                                                                <ul>
-                                                                    <li>
-                                                                        <div class="task-type">{{$solvedTask->task->name}}</div>
-                                                                        Instructor feedack
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        @endforeach
-                                                    <!-- Close Task start -->
-                                                    <!-- add task popup start -->
-                                                    <div class="modal fade customscroll" id="task-add" tabindex="-1"
-                                                        role="dialog">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLongTitle">
-                                                                        Update Information</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close"
-                                                                        data-toggle="tooltip" data-placement="bottom"
-                                                                        title="" data-original-title="Close Modal">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body pd-0">
-                                                                    <div class="task-list-form">
-                                                                        <ul>
-                                                                            <li>
-                                                                                <form>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-md-4">Task
-                                                                                            Type</label>
-                                                                                        <div class="col-md-8">
-                                                                                            <input type="text"
-                                                                                                class="form-control">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="fortapm-group row">
-                                                                                        <label class="col-md-4">Task
-                                                                                            Message</label>
-                                                                                        <div class="col-md-8">
-                                                                                            <textarea
-                                                                                                class="form-control"></textarea>
-                                                                                        </div>
-                                                                                        <div>
-                                                                                            <div class="form-group row">
-                                                                                                <label
-                                                                                                    class="col-md-4">Assigned
-                                                                                                    to</label>
-                                                                                            </div>
-                                                                                </form>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a href="javascript:;"
-                                                                                    class="remove-task"
-                                                                                    data-toggle="tooltip"
-                                                                                    data-placement="bottom" title=""
-                                                                                    data-original-title="Remove Task"><i
-                                                                                        class="ion-minus-circled"></i></a>
-                                                                                <form>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-md-4">Task
-                                                                                            Type</label>
-                                                                                        <div class="col-md-8">
-                                                                                            <input type="text"
-                                                                                                class="form-control">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-md-4">Task
-                                                                                            Message</label>
-                                                                                        <div class="col-md-8">
-                                                                                            <textarea
-                                                                                                class="form-control"></textarea>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label
-                                                                                            class="col-md-4">Assigned
-                                                                                            to</label>
-                                                                                        <div class="col-md-8">
-                                                                                            <select
-                                                                                                class="selectpicker form-control"
-                                                                                                data-style="btn-outline-primary"
-                                                                                                title="Not Chosen"
-                                                                                                multiple=""
-                                                                                                data-selected-text-format="count"
-                                                                                                data-count-selected-text="{0} people selected">
-                                                                                                <option>Ferdinand M.
-                                                                                                </option>
-                                                                                                <option>Don H. Rabon
-                                                                                                </option>
-                                                                                                <option>Ann P. Harris
-                                                                                                </option>
-                                                                                                <option>Katie D. Verdin
-                                                                                                </option>
-                                                                                                <option>Christopher S.
-                                                                                                    Fulghum</option>
-                                                                                                <option>Matthew C. Porter
-                                                                                                </option>
-                                                                                            </select>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row mb-0">
-                                                                                        <label class="col-md-4">Due
-                                                                                            Date</label>
-                                                                                        <div class="col-md-8">
-                                                                                            <input type="text"
-                                                                                                class="form-control date-picker">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="add-more-task">
-                                                                        <a href="#" data-toggle="tooltip"
-                                                                            data-placement="bottom" title=""
-                                                                            data-original-title="Add Task"><i
-                                                                                class="ion-plus-circled"></i> Add More
-                                                                            Task</a>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button"
-                                                                        class="btn btn-primary">Add</button>
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- add task popup End -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Tasks Tab End -->
                                         <!-- Setting Tab start -->
-                                        <div class="tab-pane fade height-100-p active show" id="setting" role="tabpanel">
+                                        <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
                                             <div class="profile-setting">
                                                 <form method="POST" action="{{ route('students.update', $student->id) }}">
                                                     @csrf
@@ -292,7 +132,7 @@
                                                             <div class="form-group">
                                                                 <label>Full Name</label>
                                                                 <input class="form-control form-control-lg" type="text"
-                                                                    name="name">
+                                                                    name="name" value="{{ $student->name }}">
                                                             </div>
                                                         </li>
                                                         <li class="weight-500 col-md-6">
@@ -300,7 +140,7 @@
                                                             <div class="form-group mt-5">
                                                                 <label>Email</label>
                                                                 <input class="form-control form-control-lg" type="email"
-                                                                    name="email">
+                                                                    name="email" value="{{ $student->email }}">
                                                             </div>
                                                         </li>
                                                         <div class="form-group mb-0 ml-3">
@@ -312,7 +152,112 @@
                                             </div>
                                         </div>
                                         <!-- Setting Tab End -->
+                                        <!-- Tasks Tab start -->
+                                        <div class="tab-pane fade" id="tasks" role="tabpanel">
+                                            <div class="pd-20 profile-task-wrap">
+                                                <div class="container pd-0">
+                                                    <!-- Open Task start -->
+                                                    <div class="task-title row align-items-center">
+                                                        <div class="col-md-8 col-sm-12">
+                                                            <h5>Pending Tasks</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-task-list pb-30">
+                                                        <ul>
+                                                            @foreach ($tasks as $task)
+                                                                @if ($task->diploma_id == $student->diploma_id)
+                                                                    <li>
+                                                                        <div class="task-type-pending">
+                                                                            <a href="">{{ $task->name }}</a>
+                                                                        </div>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                        <div class="container text-center ms-auto mt-5">
+                                                            {{ $tasks->links() }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="Passedtasks" role="tabpanel">
+                                            <div class="pd-20 profile-task-wrap">
+                                                <div class="container pd-0">
+                                                    <!-- Open Task start -->
+                                                    <div class="task-title row align-items-center">
+                                                        <div class="col-md-8 col-sm-12">
+                                                            <h5>Passed Tasks</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-task-list pb-30">
+                                                        <ul>
+                                                            @foreach ($solvedTasks as $solvedTask)
+                                                                @if ($task->diploma_id == $student->diploma_id)
+                                                                @if ($solvedTask->status == 1) 
+                                                                    <li>
+                                                                        <div class="task-type-pending">
+                                                                            <a href="">{{ $solvedTask->task->name }}</a>
+                                                                        </div>
+                                                                    </li>
+                                                                @else
+                                                                <li>
+                                                                    <div class="task-type-pending">
+                                                                        <p>No Passed Tasks was Found</p>
+                                                                    </div>
+                                                                </li>
+                                                                @endif
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                        <div class="container text-center ms-auto mt-5">
+                                                            {{ $solvedTasks->fragment('Passedtasks')->render() }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="Failedtasks" role="tabpanel">
+                                            <div class="pd-20 profile-task-wrap">
+                                                <div class="container pd-0">
+                                                    <!-- Open Task start -->
+                                                    <div class="task-title row align-items-center">
+                                                        <div class="col-md-8 col-sm-12">
+                                                            <h5>Failed Tasks</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-task-list pb-30">
+                                                        <ul>
+                                                            @foreach ($solvedTasks as $solvedTask)
+                                                                @if ($task->diploma_id == $student->diploma_id)
+                                                                @if ($solvedTask->status == 2) 
+                                                                    <li>
+                                                                        <div class="task-type-pending">
+                                                                            <a href="">{{ $solvedTask->task->name }}</a>
+                                                                        </div>
+                                                                    </li>
+                                                                @else
+                                                                <li>
+                                                                    <div class="task-type-pending">
+                                                                        <p>No Failed Tasks was Found</p>
+                                                                    </div>
+                                                                </li>
+                                                                @endif
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                        {{-- <div class="container text-center ms-auto mt-5">
+                                                            {{ $solvedTasks->links() }}
+                                                        </div> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- Tasks Tab End -->
+
                                 </div>
                             </div>
                         </div>
@@ -320,5 +265,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

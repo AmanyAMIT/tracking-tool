@@ -15,6 +15,8 @@
                             <tr>
                                 <th class="table-plus datatable-nosort">Student's Name</th>
                                 <th>Task's Name</th>
+                                <th>Client</th>
+                                <th>Diploma</th>
                                 <th>Status</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>
@@ -24,17 +26,19 @@
                             <tr>
                                 <td class="table-plus">{{$solvedTask->user->name}}</td>
                                 <td class="table-plus">{{$solvedTask->task->name}}</td>
+                                <td class="table-plus">{{$solvedTask->client->name}}</td>
+                                <td class="table-plus">{{$solvedTask->diploma->name}}</td>
                                 @if ($solvedTask->status == 0)
                                 <td class="table-plus">
-                                    <button class="btn-warning text-white">Pending</button>
+                                    <button class="btn btn-warning">Pending</button>
                                 </td>
                                 @elseif($solvedTask->status == 1)
                                 <td class="table-plus">
-                                    <button class="btn-success text-white">Passed</button>
+                                    <button class="btn btn-success">Passed</button>
                                 </td>
                                 @else
                                 <td class="table-plus">
-                                    <button class="btn-danger text-white">Failed</button>
+                                    <button class="btn btn-danger">Failed</button>
                                 </td>
                                 @endif
                                 <td>

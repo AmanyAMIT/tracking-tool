@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Admin\ClientDiplomas;
 use App\Models\Admin\Group;
 use App\Models\Admin\Round;
+use App\Models\Admin\SolvedTask;
 use App\Models\Admin\Task;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -35,9 +36,9 @@ class Client extends Authenticatable
     {
         return $this->belongsTo(ClientDiplomas::class, 'client_id' , 'id');
     }
-    public function rounds()
+    public function solvedTasks()
     {
-        return $this->hasMany(Round::class, 'client_id' , 'id');
+        return $this->hasMany(SolvedTask::class, 'client_id' , 'id');
     }
     public function tasks()
     {

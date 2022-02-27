@@ -1,3 +1,4 @@
+
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="{{route('dashboard')}}" class="text-center">

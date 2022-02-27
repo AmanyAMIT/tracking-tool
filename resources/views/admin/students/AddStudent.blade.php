@@ -28,25 +28,45 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Student's Name :</label>
-                                        <input type="text" class="form-control" name="name">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name">
+                                        @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Email :</label>
-                                        <input type="email" class="form-control" name="email">
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email">
+                                        @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Password :</label>
-                                        <input type="password" class="form-control" name="password">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Assign to a Client :</label>
-                                        <select class="custom-select form-control" name="client_id">
+                                        <select class="custom-select form-control @error('client_id') is-invalid @enderror" name="client_id">
+                                            @error('client_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                            @enderror
                                         @foreach ($clients as $client)
                                             <option value="{{$client->id}}">{{$client->name}}</option>
                                         @endforeach
@@ -56,7 +76,12 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Assign to a Diploma :</label>
-                                    <select class="custom-select form-control" name="diploma_id">
+                                    <select class="custom-select form-control @error('diploma_id') is-invalid @enderror" name="diploma_id">
+                                        @error('diploma_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                            @enderror
                                     @foreach ($diplomas as $diploma)
                                         <option value="{{$diploma->id}}">{{$diploma->name}}</option>
                                     @endforeach
@@ -66,7 +91,12 @@
                             <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Assign to a Group :</label>
-                                        <select class="custom-select form-control" name="group_id">
+                                        <select class="custom-select form-control @error('group_id') is-invalid @enderror" name="group_id">
+                                            @error('group_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                                @enderror
                                         @foreach ($groups as $group)
                                             <option value="{{$group->id}}">{{$group->group_name}}</option>
                                         @endforeach

@@ -10,9 +10,8 @@ use App\Models\Client;
 use App\Models\Diploma;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use phpDocumentor\Reflection\DocBlock\Tag;
 
 class StudentController extends Controller
 {
@@ -67,7 +66,7 @@ class StudentController extends Controller
         $student = new User();
         $student->name = $request->input('name');
         $student->email = $request->input('email');
-        $student->password = $request->input('password');
+        $student->password = Hash::make($request->input('password'));
         $student->group_id = $request->input('group_id');
         $student->diploma_id = $request->input('diploma_id');
         $student->client_id = $request->input('client_id');
@@ -84,12 +83,10 @@ class StudentController extends Controller
     public function show($id)
     {
         //
-        // $student = ClientDiplomas::all();
-        // $diplomas = Diploma::all();
-        // $groups = Group::all();
         $student = User::findOrFail($id);
         $tasks = Task::cursorPaginate(5);
-        $solvedTasks = SolvedTask::cursorPaginate(5);
+        $solvedTasks = SolvedTask::paginate(5);
+        // $solvedTasks = SolvedTask::all();
         return view('admin.students.StudentProfile' , compact('student' , 'tasks' , 'solvedTasks'));
     }
 
@@ -117,8 +114,8 @@ class StudentController extends Controller
     {
         //      
         $validator = Validator::make($request->all() , [
-            'name' => ['required' , 'min:2'],
-            'email' => ['required' , 'email']
+            'name' => ['min:2'],
+            'email' => ['email']
         ]);
         if($validator->fails())
         {
@@ -140,5 +137,8 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->back()->with(['success' => 'User has been deleted']);
     }
 }

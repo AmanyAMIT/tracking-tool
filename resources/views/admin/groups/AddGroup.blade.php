@@ -27,14 +27,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Group Name :</label>
-                                        <input type="text" class="form-control" name="group_name">
+                                        <input type="text" class="form-control @error('group_name') is-invalid @enderror" name="group_name">
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Assign to Client :</label>
-                                        <select class="custom-select form-control" name="client_id">
+                                        <select class="custom-select form-control @error('client_id') is-invalid @enderror" name="client_id">
                                         @foreach ($clients as $client)
                                             <option value="{{$client->id}}">{{$client->name}}</option>
                                         @endforeach
@@ -46,7 +46,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Assign to a Diploma :</label>
-                                        <select class="custom-select form-control" name="diploma_id">
+                                        <select class="custom-select form-control @error('diploma_id') is-invalid @enderror" name="diploma_id">
                                         @foreach ($diplomas as $diploma)
                                             <option value="{{$diploma->id}}">{{$diploma->name}}</option>
                                         @endforeach

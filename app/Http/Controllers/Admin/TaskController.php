@@ -9,6 +9,7 @@ use App\Models\Client;
 use App\Models\Diploma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use phpDocumentor\Reflection\DocBlock\Tag;
 
 class TaskController extends Controller
 {
@@ -96,6 +97,8 @@ class TaskController extends Controller
     public function edit($id)
     {
         //
+        $task = Task::findOrFail($id);
+        return view('admin.tasks.EditTask' , compact('task'));
     }
 
     /**
@@ -108,6 +111,23 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'name' => ['required'],
+            'descriptions' => ['required'],
+            'requirements' => ['required'],
+            'marks' => ['required'],
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $task = Task::findOrFail($id);
+        $task->name = $request->input('name');
+        $task->descriptions = $request->input('descriptions');
+        $task->requirements = $request->input('requirements');
+        $task->marks = $request->input('marks');
+        $task->update();
+        return redirect()->back()->with(['success' => 'Task was updated']);
     }
 
     /**
@@ -119,5 +139,8 @@ class TaskController extends Controller
     public function destroy($id)
     {
         //
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return redirect()->back()->with(['success' => 'Task has been deleted']);
     }
 }
