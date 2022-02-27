@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('diploma_id');
             $table->integer('client_id');
+            $table->integer('group_id');
             $table->rememberToken();
             $table->timestamps();
         });

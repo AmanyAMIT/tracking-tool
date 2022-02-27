@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\Client;
 use App\Models\Diploma;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,5 +28,9 @@ class Group extends Model
     public function rounds()
     {
         return $this->hasMany(Round::class, 'group_id' , 'id');
+    }
+    public function students()
+    {
+        return $this->hasMany(User::class, 'group_id' , 'id');
     }
 }

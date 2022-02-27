@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title') - Add Task @endsection
+@section('title') - Add Student @endsection
 @section('content')
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Add New Task</h4>
+                            <h4>Add New Student</h4>
                         </div>
                     </div>
                 </div>
@@ -16,10 +16,10 @@
 
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix">
-                    <h4 class="text-blue h4">Fill Task's Details</h4>
+                    <h4 class="text-blue h4">Fill Student's Details</h4>
                 </div>
                 <div class="wizard-content">
-                    <form class="tab-wizard wizard-circle wizard" method="POST" action="{{route('tasks.store')}}">	
+                    <form class="tab-wizard wizard-circle wizard" method="POST" action="{{route('students.store')}}">	
                         @csrf
                         <h5>General Details</h5>
                         <section>
@@ -27,26 +27,20 @@
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label >Task's Name :</label>
+                                        <label >Student's Name :</label>
                                         <input type="text" class="form-control" name="name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label >Marks :</label>
-                                        <input type="text" class="form-control" name="marks">
+                                        <label >Email :</label>
+                                        <input type="email" class="form-control" name="email">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label >Description :</label>
-                                        <input type="text" class="form-control" name="descriptions">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label >Requirements :</label>
-                                        <input type="text" class="form-control" name="requirements">
+                                        <label >Password :</label>
+                                        <input type="password" class="form-control" name="password">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -71,16 +65,16 @@
                         </div>
                             <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Assign to a Category :</label>
-                                        <select class="custom-select form-control" name="task_category_id">
-                                        @foreach ($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        <label>Assign to a Group :</label>
+                                        <select class="custom-select form-control" name="group_id">
+                                        @foreach ($groups as $group)
+                                            <option value="{{$group->id}}">{{$group->group_name}}</option>
                                         @endforeach
                                         </select>
                                 </div>
                             </div>
                         </section>
-                        <input type="submit" value="Add Task" class="btn btn-primary btn-wide mt-5 ml-3">
+                        <input type="submit" value="Add Student" class="btn btn-primary btn-wide mt-5 ml-3">
                     </form>
                 </div>
         </div>

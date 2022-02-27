@@ -51,4 +51,8 @@ class Diploma extends Model
     {
         return $this->hasMany(Task::class, 'diploma_id' , 'id');
     }
+    public function students()
+    {
+        return $this->hasMany(User::class, 'diploma_id' , 'id');
+    }
 }

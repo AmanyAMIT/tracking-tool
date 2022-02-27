@@ -16,7 +16,7 @@ class SolvedTaskSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('solvedtasks')->insert([
+        DB::table('solved_tasks')->insert([
             'user_id' => '1',
             'task_id' => '1',
             'task_file' => '0',

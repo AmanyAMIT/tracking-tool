@@ -17,6 +17,7 @@
                     <ul class="submenu">
                         <li><a href="{{route('tasks.index')}}">All Tasks</a></li>
                         <li><a href="{{route('tasks.create')}}">Add Task</a></li>
+                        <li><a href="{{route('solvedTasks.index')}}">Solved Tasks</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -26,6 +27,15 @@
                     <ul class="submenu">
                         <li><a href="{{route('taskcategories.index')}}">All Categories</a></li>
                         <li><a href="{{route('taskcategories.create')}}">Add Category</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-group"></span><span class="mtext">Students</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{route('students.index')}}">All Students</a></li>
+                        <li><a href="{{route('students.create')}}">Add Student</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -44,7 +54,7 @@
                     <ul class="submenu">
                         <li><a href="{{route('groups.index')}}">All Groups</a></li>
                         <li><a href="{{route('groups.create')}}">Add Group</a></li>
-                        <li><a href="{{route('rounds.create')}}">Add Round</a></li>
+                        {{-- <li><a href="{{route('rounds.create')}}">Add Round</a></li> --}}
                     </ul>
                 </li>
                 <li>

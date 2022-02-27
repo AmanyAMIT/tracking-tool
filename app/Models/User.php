@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Group;
 use App\Models\Admin\SolvedTask;
+use App\Models\Admin\Task;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,9 +24,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id',
         'diploma_id',
-        'client_id'
+        'client_id',
+        'group_id'
     ];
 
     /**
@@ -49,5 +51,21 @@ class User extends Authenticatable
     public function solved_tasks()
     {
         return $this->hasMany(SolvedTask::class, 'user_id' , 'id');
+    }
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'client_id' , 'id');
+    }
+    public function diploma()
+    {
+        return $this->belongsTo(Diploma::class, 'diploma_id' , 'id');
+    }
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id' , 'id');
+    }
+    public function task()
+    {
+        return $this->hasMany(Task::class, 'task_id' , 'id');
     }
 }

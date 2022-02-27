@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Material;
-use App\Models\Admin\TaskCategory;
-use App\Models\Diploma;
+use App\Models\Admin\SolvedTask;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class MaterialController extends Controller
+class SolvedTaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +18,8 @@ class MaterialController extends Controller
     public function index()
     {
         //
-        $materials = Material::cursorPaginate(5);
-        return view('admin.materials.AllMaterials' , compact('materials'));
+        $solvedTasks = SolvedTask::cursorPaginate(5);
+        return view('admin.tasks.SolvedTasks' , compact('solvedTasks'));
     }
 
     /**
@@ -31,9 +30,7 @@ class MaterialController extends Controller
     public function create()
     {
         //
-        $diplomas = Diploma::all();
-        $categories = TaskCategory::all();
-        return view('admin.materials.AddMaterial' , compact('diplomas','categories'));
+        return view('student.tasks.SubmitTask');
     }
 
     /**
@@ -46,33 +43,24 @@ class MaterialController extends Controller
     {
         //
         $validator = Validator::make($request->all() , [
-            'title' => ['required' , 'min:8'],
-            'material_docs' => ['required' , 'mimes:pptx,docx,pdf'],
-            'diploma_id' => ['required'],
-            'category_id' => ['required']
+            'user_id' => ['required'],
+            'task_id' => ['required'],
+            'task_file' => ['required'],
+            'status' => ['required'],
         ]);
         if($validator->fails())
         {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
-        $material = new Material();
-        $material->title = $request->input('title');
-        $material->diploma_id = $request->input('diploma_id');
-        $material->category_id = $request->input('category_id');
-        if($request->hasFile('material_docs')){
-            $file = $request->file('material_docs');
-            $name= $file->getClientOriginalName();
-            $filename = $name;
-            $file->move('uploads/Materials/' , $filename);
-            $material->material_docs = $filename;
-        }
-        else{
-            return $request;
-            $material->material_docs = '';
+        $solvedTask = new SolvedTask();
+        $solvedTask->user_id = Auth::user()->id;
+        $solvedTask->task_id = $request->input('descriptions');
+        $solvedTask->task_file = $request->input('requirements');
+        $solvedTask->status = '0';
+        $solvedTask->comments = 'No comment';
+        $solvedTask->save();
+        return redirect()->back()->with(['success' => 'Task was submitted']);
     }
-    $material->save();
-    return redirect()->back()->with(['success' => 'New Material was added']);
-}
 
     /**
      * Display the specified resource.
@@ -83,6 +71,8 @@ class MaterialController extends Controller
     public function show($id)
     {
         //
+        $solvedTask = SolvedTask::findOrFail($id);
+        return view('admin.tasks.SolvedTaskDetails' , compact('solvedTask'));
     }
 
     /**
@@ -94,8 +84,8 @@ class MaterialController extends Controller
     public function edit($id)
     {
         //
-        $material = Material::findOrFail($id);
-        return view('admin.materials.EditMaterial' , compact('material'));
+        $solvedTask = SolvedTask::findOrFail($id);
+        return view('admin.tasks.SolvedTaskDetails' , compact('solvedTask'));
     }
 
     /**
@@ -108,6 +98,19 @@ class MaterialController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // $validator = Validator::make($request->all() , [
+        //     'status' => ['required'],
+        //     'comment' => ['required']
+        // ]);
+        // if($validator->fails())
+        // {
+        //     return redirect()->back()->withErrors($validator)->withInput($request->all());
+        // }
+        $solvedTask = SolvedTask::findOrFail($id);
+        $solvedTask->status = $request->input('status');
+        $solvedTask->comments = $request->input('comments');
+        $solvedTask->update();
+        return redirect()->back()->with(['success' => 'Feedback was sent']);
     }
 
     /**

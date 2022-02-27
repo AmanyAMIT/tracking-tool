@@ -12,11 +12,16 @@ class Material extends Model
     protected $fillable = [
         'name',
         'material_docs',
-        'diploma_id'
+        'diploma_id',
+        'category_id'
     ];
 
     public function diploma()
     {
         return $this->belongsTo(Diploma::class, 'diploma_id' , 'id');
+    }
+    public function category()
+    {
+        return $this->belongsTo(TaskCategory::class, 'category_id' , 'id');
     }
 }

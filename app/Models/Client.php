@@ -43,4 +43,8 @@ class Client extends Authenticatable
     {
         return $this->hasMany(Task::class, 'client_id' , 'id');
     }
+    public function students()
+    {
+        return $this->hasMany(User::class, 'client_id' , 'id');
+    }
 }

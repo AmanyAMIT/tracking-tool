@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\Client;
 use App\Models\Diploma;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,5 +38,9 @@ class Task extends Model
     public function client()
     {
         return $this->belongsTo(Client::class, 'client_id' , 'id');
+    }
+    public function student()
+    {
+        return $this->belongsTo(User::class, 'task_id' , 'id');
     }
 }

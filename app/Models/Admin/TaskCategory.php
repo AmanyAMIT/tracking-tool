@@ -23,4 +23,8 @@ class TaskCategory extends Model
     {
         return $this->hasMany(Task::class, 'task_category_id' , 'id');
     }
+    public function materials()
+    {
+        return $this->hasMany(Material::class, 'category_id' , 'id');
+    }
 }

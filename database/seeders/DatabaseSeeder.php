@@ -18,13 +18,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            UserSeeder::class,
+            // UserSeeder::class,
             AdminSeeder::class,
             // ClientSeeder::class,
-            GroupSeeder::class,
-            TaskSeeder::class,
-            TaskCategorySeeder::class,
-            SolvedTaskSeeder::class,
+            // GroupSeeder::class,
+            // TaskSeeder::class,
+            // TaskCategorySeeder::class,
+            // SolvedTaskSeeder::class,
             // DiplomaSeeder::class
         ]);
     }

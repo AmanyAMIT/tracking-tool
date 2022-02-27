@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\SolvedTaskController;
 use App\Http\Controllers\Auth\CustomAuthController;
+use App\Models\Admin\SolvedTask;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

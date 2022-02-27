@@ -13,7 +13,8 @@ class SolvedTask extends Model
     protected $fillable = [
         'user_id',
         'task_id',
-        'status'
+        'status',
+        'comments'
     ];
 
     public function task()

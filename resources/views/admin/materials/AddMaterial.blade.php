@@ -28,13 +28,23 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Material's Title :</label>
-                                        <input type="text" class="form-control" name="title">
+                                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title">
+                                        @error('title')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Documentation :</label>
-                                        <input type="file" class="form-control" name="material_docs">
+                                        <input type="file" class="form-control @error('material_docs') is-invalid @enderror" name="material_docs">
+                                        @error('material_docs')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -42,11 +52,25 @@
                                         <label>Assign to a Diploma :</label>
                                         <select class="custom-select form-control" name="diploma_id">
                                         @foreach ($diplomas as $diploma)
-                                            <option value="{{$diploma->id}}">{{$diploma->name}}</option>
+                                            <option value="{{$diploma->id}}">
+                                                {{$diploma->name}}
+                                            </option>
                                         @endforeach
                                         </select>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Assign to a Topic :</label>
+                                    <select class="custom-select form-control" name="category_id">
+                                    @foreach ($categories as $category)
+                                        <option value="{{$category->id}}">
+                                                {{$category->name}}
+                                        </option>
+                                    @endforeach
+                                    </select>
+                            </div>
+                        </div>
                         </section>
                         <input type="submit" value="Add Material" class="btn btn-primary btn-wide mt-5 ml-3">
                     </form>

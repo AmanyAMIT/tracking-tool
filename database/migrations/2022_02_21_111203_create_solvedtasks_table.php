@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('solvedtasks', function (Blueprint $table) {
+        Schema::create('solved_tasks', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->integer('task_id');
-            $table->binary('task_file');
+            $table->mediumText('task_file');
             $table->integer('status')->default('0');
+            $table->string('comments');
             $table->timestamps();
         });
     }
