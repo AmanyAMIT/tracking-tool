@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -16,7 +17,14 @@ class AdminController extends Controller
     public function index()
     {
         //
-        return view("admin.dashboard");
+        $clients = DB::table('clients')->get()->count();
+        $students = DB::table('users')->get()->count();
+        $diplomas = DB::table('diplomas')->get()->count();
+        $groups = DB::table('groups')->get()->count();
+        return view("admin.dashboard" , compact("clients",
+        "students",
+        "diplomas",
+        "groups"));
     }
 
     /**

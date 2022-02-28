@@ -55,7 +55,7 @@ class TaskCategoryController extends Controller
         $taskcategories->name = $request->input('name');
         $taskcategories->diploma_id = $request->input('diploma_id');
         $taskcategories->save();
-        return redirect()->back()->with(['success' => 'New Category was added']);
+        return redirect()->route("taskcategories.index")->with(['toast_success' => 'New Category was added']);
     }
 
     /**
@@ -105,7 +105,7 @@ class TaskCategoryController extends Controller
         $category->name = $request->input('name');
         $category->diploma_id = $request->input('diploma_id');
         $category->save();
-        return redirect()->back()->with(['success' => 'New Category was added']);
+        return redirect()->route("taskcategories.index")->with(['toast_success' => 'New Category was added']);
     }
 
     /**
@@ -119,6 +119,6 @@ class TaskCategoryController extends Controller
         //
         $taskcategory = TaskCategory::findOrFail($id);
         $taskcategory->delete();
-        return redirect()->back()->with(['success' => 'Category has been deleted']);
+        return redirect()->route("taskcategories.index")->with(['toast_success' => 'Category has been deleted']);
     }
 }

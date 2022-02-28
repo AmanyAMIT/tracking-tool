@@ -71,7 +71,7 @@ class StudentController extends Controller
         $student->diploma_id = $request->input('diploma_id');
         $student->client_id = $request->input('client_id');
         $student->save();
-        return redirect()->back()->with(['success' => 'New Student was added']);
+        return redirect()->route("students.index")->with(['toast_success' => 'New Student was added']);
     }
 
     /**
@@ -125,7 +125,7 @@ class StudentController extends Controller
         $student->name = $request->input('name');
         $student->email = $request->input('email');
         $student->update();
-        return redirect()->back()->with(['success' => 'Student was updated']);
+        return redirect()->route("students.index")->with(['toast_success' => 'Student was updated']);
     }
 
     /**
@@ -139,6 +139,6 @@ class StudentController extends Controller
         //
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->back()->with(['success' => 'User has been deleted']);
+        return redirect()->back()->with(['toast_success' => 'User has been deleted']);
     }
 }

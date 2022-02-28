@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\ClientDiplomas;
+use App\Models\Client;
 use App\Models\Diploma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +19,7 @@ class ClientDiplomasController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.client.AddClient');
+
     }
 
     /**
@@ -31,7 +31,8 @@ class ClientDiplomasController extends Controller
     {
         //
         $diplomas = Diploma::all();
-        return view('admin.clients.AddClient' , compact('diplomas' , 'last'));
+        $clients = Client::all();
+        return view('admin.clients.AssignClient' , compact('diplomas' , 'clients'));
     }
 
     /**
@@ -45,6 +46,7 @@ class ClientDiplomasController extends Controller
         //
         $validator = Validator::make($request->all() , [
             'diploma_id' => ['required'],
+            'client_id' => ['required']
         ]);
         if($validator->fails())
         {
@@ -52,9 +54,9 @@ class ClientDiplomasController extends Controller
         }
         $clientDiploma = new ClientDiplomas();
         $clientDiploma->diploma_id = $request->input('diploma_id');
-        $clientDiploma->client_id = '1';
+        $clientDiploma->client_id = $request->input('client_id');
         $clientDiploma->save();
-        return redirect()->back()->with(['success' => 'New Client was added']);
+        return redirect()->back()->with(['toast_success' => 'Successful Assignment']);
     }
 
     /**

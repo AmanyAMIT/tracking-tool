@@ -45,6 +45,8 @@ class DiplomaController extends Controller
         //
         $validator = Validator::make($request->all() , [
             'name' => ['required'],
+            'description' => ['required'],
+            'hours' => ['required']
             // 'client_id' => ['required']
         ]);
         if($validator->fails())
@@ -53,9 +55,11 @@ class DiplomaController extends Controller
         }
         $diploma = new Diploma();
         $diploma->name = $request->input('name');
+        $diploma->description = $request->input('description');
+        $diploma->hours = $request->input('hours');
         // $diploma->client_id = $request->input('client_id');
         $diploma->save();
-        return redirect()->back()->with(['success' => 'New Diploma was added']);
+        return redirect()->route("diploma.index")->with(['toast_success' => 'New Diploma was added']);
     }
 
     /**
@@ -78,6 +82,8 @@ class DiplomaController extends Controller
     public function edit($id)
     {
         //
+        $diploma = Diploma::findOrFail($id);
+        return view("admin.diplomas.EditDiploma" , compact("diploma"));
     }
 
     /**
@@ -90,6 +96,22 @@ class DiplomaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'name' => ['required'],
+            'description' => ['required'],
+            'hours' => ['required']
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $diploma = Diploma::findOrFail($id);
+        $diploma->name = $request->input('name');
+        $diploma->description = $request->input('description');
+        $diploma->hours = $request->input('hours');
+        // $diploma->client_id = $request->input('client_id');
+        $diploma->update();
+        return redirect()->route("diplomas.index")->with(['toast_success' => 'Diploma was updated']);
     }
 
     /**

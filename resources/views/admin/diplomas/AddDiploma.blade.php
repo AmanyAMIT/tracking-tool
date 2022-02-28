@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Add New Diploma</h4>
+                            <h4>Fill Diploma's Information</h4>
                         </div>
                     </div>
                 </div>
@@ -23,25 +23,27 @@
                         @csrf
                         <h5>General Details</h5>
                         <section>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Diploam Name :</label>
                                         <input type="text" class="form-control" name="name">
                                     </div>
-                                    <input type="submit" value="Add Diploma" class="btn btn-primary btn-wide mt-5">
                                 </div>
-                                
-                                {{-- <div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Assign to a Client :</label>
-                                        <select class="custom-select form-control" name="client_id">
-                                        @foreach ($clients as $client)
-                                            <option value="{{$client->id}}">{{$client->name}}</option>
-                                        @endforeach
-                                        </select>
-                                        <input type="submit" value="Add Diploma" class="btn btn-primary btn-wide mt-5">
-                                </div> --}}
-                                
+                                        <label >Number of Hours :</label>
+                                        <input type="number" class="form-control" name="hours">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label >Description :</label>
+                                        <textarea name="description" id="" cols="30" rows="10" class="form-control" ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                                <input type="submit" value="Add Diploma" class="btn btn-primary btn-wide mt-5">
                         </section>
                     </form>
                 </div>

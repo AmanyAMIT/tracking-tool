@@ -46,6 +46,7 @@
                     <ul class="submenu">
                         <li><a href="{{route('clients.index')}}">All Clients</a></li>
                         <li><a href="{{route('clients.create')}}">Add Client</a></li>
+                        <li><a href="{{route('StoreClientDiploma')}}">Assign to Diploma</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

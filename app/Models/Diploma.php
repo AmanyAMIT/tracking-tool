@@ -19,6 +19,8 @@ class Diploma extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'description',
+        'hours'
     ];
 
     public function client()

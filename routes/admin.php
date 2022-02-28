@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\ClientDiplomasController;
 use App\Http\Controllers\Admin\DiplomaController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\MaterialController;
@@ -14,7 +15,6 @@ use App\Http\Controllers\Auth\CustomAuthController;
 use App\Models\Admin\ClientDiplomas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Psr\Http\Client\ClientInterface;
 
 Route::get('dashboard', [CustomAuthController::class , 'dashboard'])->middleware('auth:admin')->name('dashboard');
 
@@ -31,6 +31,6 @@ Route::resource('/taskcategories' , TaskCategoryController::class);
 Route::resource('/tasks' , TaskController::class);
 Route::resource('/solvedTasks' , SolvedTaskController::class);
 Route::resource('/materials' , MaterialController::class);
-Route::post('/clinetDiplomad' , [ClientController::class , 'StoreClientDiploma'])->name('StoreClientDiploma');
-Route::post('/assignNewDiploma' , [ClientController::class , 'AssignNewDiploma'])->name('AssignNewDiploma');
+Route::get('/clinetDiplomad' , [ClientDiplomasController::class , 'create'])->name('StoreClientDiploma');
+Route::post('/assignNewDiploma' , [ClientDiplomasController::class , 'store'])->name('AssignNewDiploma');
 Auth::routes();

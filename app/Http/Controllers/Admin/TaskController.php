@@ -8,6 +8,7 @@ use App\Models\Admin\TaskCategory;
 use App\Models\Client;
 use App\Models\Diploma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use phpDocumentor\Reflection\DocBlock\Tag;
 
@@ -37,6 +38,10 @@ class TaskController extends Controller
     public function create()
     {
         //
+        // $categories = DB::table('task_categories')
+        // ->select("task_categories.name")
+        // ->join('diplomas', 'diplomas.id', '=', 'task_categories.diploma_id')
+        // ->get();
         $categories = TaskCategory::all();
         $diplomas = Diploma::all();
         $clients = Client::all();
@@ -74,7 +79,7 @@ class TaskController extends Controller
         $task->diploma_id = $request->input('diploma_id');
         $task->client_id = $request->input('client_id');
         $task->save();
-        return redirect()->back()->with(['success' => 'New Task was added']);
+        return redirect()->route("tasks.index")->with(['toast_success' => 'New Task was added']);
     }
 
     /**
@@ -98,7 +103,8 @@ class TaskController extends Controller
     {
         //
         $task = Task::findOrFail($id);
-        return view('admin.tasks.EditTask' , compact('task'));
+        $categories = TaskCategory::all();
+        return view('admin.tasks.EditTask' , compact('task' , 'categories'));
     }
 
     /**
@@ -116,6 +122,7 @@ class TaskController extends Controller
             'descriptions' => ['required'],
             'requirements' => ['required'],
             'marks' => ['required'],
+            'task_category_id' => ['required'],
         ]);
         if($validator->fails())
         {
@@ -126,8 +133,9 @@ class TaskController extends Controller
         $task->descriptions = $request->input('descriptions');
         $task->requirements = $request->input('requirements');
         $task->marks = $request->input('marks');
+        $task->task_category_id = $request->input('task_category_id');
         $task->update();
-        return redirect()->back()->with(['success' => 'Task was updated']);
+        return redirect()->route("tasks.index")->with(['toast_success' => 'Task was updated']);
     }
 
     /**
@@ -141,6 +149,6 @@ class TaskController extends Controller
         //
         $task = Task::findOrFail($id);
         $task->delete();
-        return redirect()->back()->with(['success' => 'Task has been deleted']);
+        return redirect()->back()->with(['toast_success' => 'Task has been deleted']);
     }
 }

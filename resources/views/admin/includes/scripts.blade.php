@@ -9,5 +9,6 @@
 	<script src="{{URL::asset('AdminPanel/src/plugins/datatables/js/dataTables.responsive.min.js')}}"></script>
 	<script src="{{URL::asset('AdminPanel/src/plugins/datatables/js/responsive.bootstrap4.min.js')}}"></script>
 	<script src="{{URL::asset('AdminPanel/vendors/scripts/dashboard.js')}}"></script>
+	@yield('script')
 </body>
 </html>

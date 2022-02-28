@@ -41,8 +41,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <h5 class="text-center h5 mb-0">{{ $student->name }}</h5>
-                            <p class="text-center text-muted font-14">Lorem ipsum dolor sit amet</p>
+                            <h5 class="text-center h5 mb-2">{{ $student->name }}</h5>
                             <div class="profile-info">
                                 <h5 class="mb-20 h5 text-blue">Contact Information</h5>
                                 <ul>
@@ -73,13 +72,16 @@
                                                 role="tab">Timeline</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Pedning Tasks</a>
+                                            <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Pedning
+                                                Tasks</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#Passedtasks" role="tab">Passed Tasks</a>
+                                            <a class="nav-link" data-toggle="tab" href="#Passedtasks"
+                                                role="tab">Passed Tasks</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#Failedtasks" role="tab">Failed Tasks</a>
+                                            <a class="nav-link" data-toggle="tab" href="#Failedtasks"
+                                                role="tab">Failed Tasks</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#setting"
@@ -139,8 +141,14 @@
 
                                                             <div class="form-group mt-5">
                                                                 <label>Email</label>
-                                                                <input class="form-control form-control-lg" type="email"
-                                                                    name="email" value="{{ $student->email }}">
+                                                                <input class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" type="email"
+                                                                    name="email" value="{{ $student->email }}" id="email">
+                                                                    <p class="text-danger font-14 font-weight-bolder" id="err"></p>
+                                                                    @error('email')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                        @enderror
                                                             </div>
                                                         </li>
                                                         <div class="form-group mb-0 ml-3">
@@ -195,19 +203,20 @@
                                                         <ul>
                                                             @foreach ($solvedTasks as $solvedTask)
                                                                 @if ($task->diploma_id == $student->diploma_id)
-                                                                @if ($solvedTask->status == 1) 
-                                                                    <li>
-                                                                        <div class="task-type-pending">
-                                                                            <a href="">{{ $solvedTask->task->name }}</a>
-                                                                        </div>
-                                                                    </li>
-                                                                @else
-                                                                <li>
-                                                                    <div class="task-type-pending">
-                                                                        <p>No Passed Tasks was Found</p>
-                                                                    </div>
-                                                                </li>
-                                                                @endif
+                                                                    @if ($solvedTask->status == 1)
+                                                                        <li>
+                                                                            <div class="task-type-pending">
+                                                                                <a
+                                                                                    href="">{{ $solvedTask->task->name }}</a>
+                                                                            </div>
+                                                                        </li>
+                                                                    @else
+                                                                        <li>
+                                                                            <div class="task-type-pending">
+                                                                                <p>No Passed Tasks was Found</p>
+                                                                            </div>
+                                                                        </li>
+                                                                    @endif
                                                                 @endif
                                                             @endforeach
                                                         </ul>
@@ -230,23 +239,25 @@
                                                     </div>
                                                     <div class="profile-task-list pb-30">
                                                         <ul>
+                                                            @if ($task->diploma_id == $student->diploma_id)
                                                             @foreach ($solvedTasks as $solvedTask)
-                                                                @if ($task->diploma_id == $student->diploma_id)
-                                                                @if ($solvedTask->status == 2) 
-                                                                    <li>
+                                                                @if ($solvedTask->status == 2)
+                                                                    
+                                                                        <li>
                                                                         <div class="task-type-pending">
                                                                             <a href="">{{ $solvedTask->task->name }}</a>
                                                                         </div>
                                                                     </li>
+                                                                    @endif
+                                                                    @endforeach
                                                                 @else
-                                                                <li>
-                                                                    <div class="task-type-pending">
-                                                                        <p>No Failed Tasks was Found</p>
-                                                                    </div>
-                                                                </li>
-                                                                @endif
-                                                                @endif
-                                                            @endforeach
+                                                                    <li>
+                                                                        <div class="task-type-pending">
+                                                                            <p>No Failed Tasks was Found</p>
+                                                                        </div>
+                                                                    </li>
+                                                                
+                                                            @endif
                                                         </ul>
                                                         {{-- <div class="container text-center ms-auto mt-5">
                                                             {{ $solvedTasks->links() }}
@@ -255,8 +266,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div id="app"></div>
+
                                     </div>
                                     <!-- Tasks Tab End -->
+
 
                                 </div>
                             </div>
@@ -267,4 +281,17 @@
         </div>
     </div>
     </div>
+@endsection
+@section('script')
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            $("document").ready(function(){
+               $(".nav-link").on("click" , function(){
+                //    console.log($(this).data('toggle'));
+                //    $("#app").load("#" + $(this).data('toggle'));
+                console.log( $("#app").load("#" + $(this).data('toggle')));
+               }) 
+            })
+        </script> --}}
 @endsection

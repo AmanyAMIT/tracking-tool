@@ -71,7 +71,7 @@ class MaterialController extends Controller
             $material->material_docs = '';
     }
     $material->save();
-    return redirect()->back()->with(['success' => 'New Material was added']);
+    return redirect()->route("materials.index")->with(['toast_success' => 'New Material was added']);
 }
 
     /**
@@ -95,7 +95,9 @@ class MaterialController extends Controller
     {
         //
         $material = Material::findOrFail($id);
-        return view('admin.materials.EditMaterial' , compact('material'));
+        $diplomas = Diploma::all();
+        $categories = TaskCategory::all();
+        return view('admin.materials.EditMaterial' , compact('material' , 'diplomas' , 'categories'));
     }
 
     /**
@@ -108,6 +110,33 @@ class MaterialController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'title' => ['required' , 'min:8'],
+            'material_docs' => ['required' , 'mimes:pptx,docx,pdf'],
+            'diploma_id' => ['required'],
+            'category_id' => ['required']
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $material = Material::findOrFail($id);
+        $material->title = $request->input('title');
+        $material->diploma_id = $request->input('diploma_id');
+        $material->category_id = $request->input('category_id');
+        if($request->hasFile('material_docs')){
+            $file = $request->file('material_docs');
+            $name= $file->getClientOriginalName();
+            $filename = $name;
+            $file->move('uploads/Materials/' , $filename);
+            $material->material_docs = $filename;
+        }
+        else{
+            return $request;
+            $material->material_docs = '';
+    }
+    $material->update();
+    return redirect()->route("materials.index")->with(['toast_success' => 'Material was updated']);
     }
 
     /**

@@ -2,6 +2,7 @@
 @include('admin.includes.top-navbar')
 @include('admin.includes.sidebar')
 @yield('content')
+@include('sweetalert::alert')
 @include('admin.includes.footer')
 @include('admin.includes.scripts')
 @include('admin.includes.StepsScriptes')

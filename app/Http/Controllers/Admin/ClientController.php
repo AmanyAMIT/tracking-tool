@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Alert;
 
 class ClientController extends Controller
 {
@@ -62,27 +63,27 @@ class ClientController extends Controller
         $client->email = $request->input('email');
         $client->password = Hash::make($request->input('password'));
         $client->save();
-        return redirect()->back()->with(['success' => 'New Client was added']);
+        return redirect()->route("clients.index")->with(['toast_success' => 'New Client was added']);
     }
 
 
-    public function StoreClientDiploma(Request $request) {
-        // $validator = Validator::make($request->all() , [
-        //     'diploma_id' => ['required'],
-        //     'client_id' => ['required'],
-        // ]);
-        // if($validator->fails())
-        // {
-        //     return redirect()->back()->withErrors($validator)->withInput($request->all());
-        // }
+    // public function StoreClientDiploma(Request $request) {
+    //     // $validator = Validator::make($request->all() , [
+    //     //     'diploma_id' => ['required'],
+    //     //     'client_id' => ['required'],
+    //     // ]);
+    //     // if($validator->fails())
+    //     // {
+    //     //     return redirect()->back()->withErrors($validator)->withInput($request->all());
+    //     // }
 
-        $client = new ClientDiplomas();
-        $client->diploma_id = $request->input('diploma_id');
-        // $client->client_id = $request->input('client_id');
-        $client->client_id = $last = Client::latest()->first()->id;
-        $client->save();
-        return redirect()->back()->with(['success' => 'New Client was added']);
-    }
+    //     $client = new ClientDiplomas();
+    //     $client->diploma_id = $request->input('diploma_id');
+    //     // $client->client_id = $request->input('client_id');
+    //     $client->client_id = $last = Client::latest()->first()->id;
+    //     $client->save();
+    //     return redirect()->back()->with(['toast_success' => 'New Client was added']);
+    // }
     /**
      * Display the specified resource.
      *
@@ -122,17 +123,31 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all() , [
+            'name' => ['required'],
+            'email' => ['required'],
+            'password' => ['required']
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $client = Client::findOrFail($id);
+        $client->name = $request->input('name');
+        $client->email = $request->input('email');
+        $client->password = Hash::make($request->input('password'));
+        $client->update();
+        return redirect()->route("clients.index")->with(['toast_success' => 'Client was updated']);
     }
 
-    public function AssignNewDiploma(Request $request)
-    {
-        $client = new ClientDiplomas();
-        $client->diploma_id = $request->input('diploma_id');
-        $client->client_id = $request->input('client_id');
-        $client->save();
-        return redirect()->back()->with(['success' => 'New Diploma was assignes']);
-    }
+    // public function AssignNewDiploma(Request $request)
+    // {
+    //     $client = new ClientDiplomas();
+    //     $client->diploma_id = $request->input('diploma_id');
+    //     $client->client_id = $request->input('client_id');
+    //     $client->save();
+    //     return redirect()->back()->with(['toast_success' => 'New Diploma was assignes']);
+    // }
 
     /**
      * Remove the specified resource from storage.

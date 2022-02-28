@@ -465,3 +465,31 @@ $('document').ready(function(){
 		},
 	});
 });
+
+// var mailformat = ("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/");
+// let email = document.getElementById("email");
+// let err = document.getElementById("err");
+// function ValidateEmail(){
+// email.addEventListener("mouseleave" , function(){
+// 	if(email.value.match(mailformat)) {
+// 		console.log("good");
+// 	}else{
+// 		email.style.borderColor= "red";
+// 		err.innerHTML = "Invalid";
+// 	}
+// });
+// }
+// console.log("hello AMIT form outside ")
+let emailCheck = document.getElementById("email");
+let err = document.getElementById("err");
+let emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
+emailCheck.addEventListener("blur", () => {
+    if (emailCheck.value.match(emailRegex)) {
+        err.innerHTML = "";
+		email.style.borderColor='#ced4da';
+    } else {
+        err.innerHTML = "Please enter a valid email format";
+		email.style.borderColor = 'red';
+    }
+})

@@ -59,7 +59,7 @@ class SolvedTaskController extends Controller
         $solvedTask->status = '0';
         $solvedTask->comments = 'No comment';
         $solvedTask->save();
-        return redirect()->back()->with(['success' => 'Task was submitted']);
+        return redirect()->back()->with(['toast_success' => 'Task was submitted']);
     }
 
     /**
@@ -110,7 +110,7 @@ class SolvedTaskController extends Controller
         $solvedTask->status = $request->input('status');
         $solvedTask->comments = $request->input('comments');
         $solvedTask->update();
-        return redirect()->back()->with(['success' => 'Feedback was sent']);
+        return redirect()->back()->with(['toast_success' => 'Feedback was sent']);
     }
 
     /**

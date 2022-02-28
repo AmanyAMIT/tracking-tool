@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Group;
 use App\Models\Client;
 use App\Models\Diploma;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -59,7 +60,7 @@ class GroupController extends Controller
         $group->client_id = $request->input('client_id');
         $group->diploma_id = $request->input('diploma_id');
         $group->save();
-        return redirect()->back()->with(['success' => 'New Group was added']);
+        return redirect()->route("groups.index")->with(['toast_success' => 'New Group was added']);
     }
 
     /**
@@ -71,6 +72,10 @@ class GroupController extends Controller
     public function show($id)
     {
         //
+        $group = Group::findOrFail($id);
+        $diplomas = Diploma::all();
+        $students = User::all();
+        return view('admin.groups.ShowGroupDetails' , compact('group' , 'diplomas' , 'students'));
     }
 
     /**

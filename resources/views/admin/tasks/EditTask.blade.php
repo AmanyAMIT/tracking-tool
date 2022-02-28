@@ -29,27 +29,37 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Task's Name :</label>
-                                        <input type="text" class="form-control" name="name">
+                                        <input type="text" class="form-control" name="name" value="{{$task->name}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Marks :</label>
-                                        <input type="text" class="form-control" name="marks">
+                                        <input type="text" class="form-control" name="marks" value="{{$task->marks}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Description :</label>
-                                        <input type="text" class="form-control" name="descriptions">
+                                        <input type="text" class="form-control" name="descriptions" value="{{$task->desciptions}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Requirements :</label>
-                                        <input type="text" class="form-control" name="requirements">
+                                        <input type="text" class="form-control" name="requirements" value="{{$task->requirements}}">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Category :</label>
+                                        <select class="custom-select form-control" name="task_category_id">
+                                        @foreach ($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                        </select>
+                                </div>
+                            </div>
                         </section>
                         <input type="submit" value="Update Task" class="btn btn-primary btn-wide mt-5 ml-3">
                     </form>

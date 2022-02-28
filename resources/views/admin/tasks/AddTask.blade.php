@@ -74,7 +74,9 @@
                                         <label>Assign to a Category :</label>
                                         <select class="custom-select form-control" name="task_category_id">
                                         @foreach ($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            {{-- @if ($diploma->id == $category->diploma_id) --}}
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            {{-- @endif --}}
                                         @endforeach
                                         </select>
                                 </div>
