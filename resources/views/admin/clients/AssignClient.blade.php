@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" value="Assign Client" class="btn btn-primary btn-wide mt-5 ml-3">
+                            <input type="submit" value="Assign Diploma" class="btn btn-primary btn-wide mt-5 ml-3">
                         </section>
                         <div class="row">
                             @include('sweetalert::alert')

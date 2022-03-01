@@ -39,7 +39,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Email :</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email">
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="email">
                                         @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

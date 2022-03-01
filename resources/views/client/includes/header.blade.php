@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title> Client Side - @yield('title') </title>
+	<title> Client Side @yield('title') </title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="{{URL::asset('ClientPanel/vendors/images/apple-touch-icon.png')}}">

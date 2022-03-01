@@ -51,12 +51,7 @@
                                 <div class="col-md-6 text-left">
                                     <div class="form-group">
                                         <label >Password :</label>
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
+                                        <input type="password" class="form-control" name="password">
                                     </div>
                                 </div>
                             </div>

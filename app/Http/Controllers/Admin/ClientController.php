@@ -51,8 +51,7 @@ class ClientController extends Controller
         //
         $validator = Validator::make($request->all() , [
             'name' => ['required'],
-            'email' => ['required'],
-            'password' => ['required']
+            'email' => ['required']
         ]);
         if($validator->fails())
         {
@@ -61,7 +60,11 @@ class ClientController extends Controller
         $client = new Client();
         $client->name = $request->input('name');
         $client->email = $request->input('email');
-        $client->password = Hash::make($request->input('password'));
+        if(Hash::make($request->input('password'))) {
+            $client->password = Hash::make($request->input('password'));
+        }else{
+            $client->password = $client->password.value();
+        }
         $client->save();
         return redirect()->route("clients.index")->with(['toast_success' => 'New Client was added']);
     }

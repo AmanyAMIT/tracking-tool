@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [CustomAuthController::class , 'dashboard'])->middleware('auth:admin')->name('dashboard');
 
-Route::get('admin/login' , [AdminLoginController::class , 'AdminLogin'])->name('admin.login');
+Route::get('admin' , [AdminLoginController::class , 'AdminLogin'])->name('admin.login');
 
-Route::post('admin/login' , [AdminLoginController::class , 'AdminAccess'])->name('admin-access');
+Route::post('admin' , [AdminLoginController::class , 'AdminAccess'])->name('admin-access');
 Route::resource('/diplomas' , DiplomaController::class);
 Route::resource('/clients' , ClientController::class);
 Route::resource('/students' , StudentController::class);

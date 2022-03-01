@@ -39,7 +39,7 @@
                                 <div class="col-md-6 text-left">
                                     <div class="form-group">
                                         <label >Email :</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror " name="email" required onclick="ValidateEmail()" id="email">
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror " name="email" onclick="ValidateEmail()" id="email">
                                         <p id="err" class="text-danger font-14 font-weight-bolder"></p>
                                             @error('email')
                                         <span class="invalid-feedback" role="alert">
