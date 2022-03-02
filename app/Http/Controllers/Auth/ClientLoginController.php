@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,5 +27,16 @@ class ClientLoginController extends Controller
         }
 
         return back()->withInput($request->only('email'));
+    }
+    public function EditProfile($id){
+        $client = Client::findOrFail($id);
+        return view('client.EditProfile' , compact('client'));
+    }
+    public function UpdateProfile(Request $request , $id){
+        $client = Client::findOrFail($id);
+        $client->name = $request->input('name');
+        $client->email = $request->input('email');
+        $client->update();
+        return redirect()->route("tracker")->with(['success' => 'Profile was updated']);
     }
 }

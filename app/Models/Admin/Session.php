@@ -8,13 +8,17 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class Session extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'group_name',
+        'name',
+        'date',
         'client_id',
-        'diploma_id'
+        'diploma_id',
+        'group_id',
+        'student_id',
+        'status'
     ];
 
     public function client()
@@ -25,12 +29,12 @@ class Group extends Model
     {
         return $this->belongsTo(Diploma::class, 'diploma_id' , 'id');
     }
-    public function sessions()
+    public function group()
     {
-        return $this->hasMany(Session::class, 'group_id' , 'id');
+        return $this->belongsTo(Group::class, 'group_id' , 'id');
     }
     public function students()
     {
-        return $this->hasMany(User::class, 'group_id' , 'id');
+        return $this->hasMany(User::class, 'student_id' , 'id');
     }
 }

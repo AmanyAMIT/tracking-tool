@@ -51,7 +51,8 @@ class ClientController extends Controller
         //
         $validator = Validator::make($request->all() , [
             'name' => ['required'],
-            'email' => ['required']
+            'email' => ['required'],
+            'password' => ['required']
         ]);
         if($validator->fails())
         {
@@ -60,11 +61,8 @@ class ClientController extends Controller
         $client = new Client();
         $client->name = $request->input('name');
         $client->email = $request->input('email');
-        if(Hash::make($request->input('password'))) {
-            $client->password = Hash::make($request->input('password'));
-        }else{
-            $client->password = $client->password.value();
-        }
+        $client->password = Hash::make($request->input('password'));
+
         $client->save();
         return redirect()->route("clients.index")->with(['toast_success' => 'New Client was added']);
     }
@@ -128,8 +126,7 @@ class ClientController extends Controller
     {
         $validator = Validator::make($request->all() , [
             'name' => ['required'],
-            'email' => ['required'],
-            'password' => ['required']
+            'email' => ['required']
         ]);
         if($validator->fails())
         {
@@ -139,6 +136,12 @@ class ClientController extends Controller
         $client->name = $request->input('name');
         $client->email = $request->input('email');
         $client->password = Hash::make($request->input('password'));
+        // if(!empty($request->input('password'))) {
+        //     $client->password = Hash::make($request->input('password'));
+            
+        // }else{
+        //     $client->password = Hash::make($request->old('password'));
+        // }
         $client->update();
         return redirect()->route("clients.index")->with(['toast_success' => 'Client was updated']);
     }

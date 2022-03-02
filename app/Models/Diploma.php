@@ -6,6 +6,7 @@ use App\Models\Admin\ClientDiplomas;
 use App\Models\Admin\Group;
 use App\Models\Admin\Material;
 use App\Models\Admin\Round;
+use App\Models\Admin\Session;
 use App\Models\Admin\SolvedTask;
 use App\Models\Admin\Task;
 use App\Models\Admin\TaskCategory;
@@ -57,5 +58,9 @@ class Diploma extends Model
     public function students()
     {
         return $this->hasMany(User::class, 'diploma_id' , 'id');
+    }
+    public function sessions()
+    {
+        return $this->hasMany(Session::class, 'diploma_id' , 'id');
     }
 }

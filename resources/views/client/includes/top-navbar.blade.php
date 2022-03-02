@@ -9,9 +9,10 @@
 						<span class="user-icon">
 							<img src="{{URL::asset('ClientPanel/src/images/product-img4.jpg')}}" alt="">
 						</span>
-						<span class="user-name">{{\Auth::guard('client')->user()->name}}</span>
+						<span class="user-name">{{Auth::guard('client')->user()->name}}</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+						<a class="dropdown-item" href="{{route('EditProfile' , $client->id)}}"><i class="dw dw-user1"></i> Profile</a>
 						<a class="dropdown-item" href="{{ route('logout') }}"  
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"><i class="dw dw-logout"></i> Log Out</a>

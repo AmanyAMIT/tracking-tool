@@ -68,6 +68,15 @@
                         <li><a href="{{route('diplomas.create')}}">Add Diploma</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <i class="micon dw dw-meeting"></i><span class="mtext">Sessions</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{route('sessions.index')}}">All Sessions</a></li>
+                        <li><a href="{{route('sessions.create')}}">Create Seesion</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon dw dw-attachment"></span><span class="mtext">Materials</span>

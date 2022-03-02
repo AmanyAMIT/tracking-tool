@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('tracker', [CustomAuthController::class , 'tracker'])->middleware('auth:client')->name('tracker');
 
+Route::get('client/EditProfile/{EditProfile}' , [ClientLoginController::class , 'EditProfile'])->name('EditProfile');
+Route::post('client/UpdateProfile/{UpdateProfile}' , [ClientLoginController::class , 'UpdateProfile'])->name('UpdateProfile');
+
 Route::get('client/login' , [ClientLoginController::class , 'ClientLogin'])->name('client.login');
 
 Route::post('client/login' , [ClientLoginController::class , 'ClientAccess'])->name('client-access');
@@ -15,6 +18,8 @@ Route::post('client/login' , [ClientLoginController::class , 'ClientAccess'])->n
 // Routes for Diplomas and its Details
 Route::get('client/ShowDiplomas' , [ClientController::class , 'ShowDiplomas'])->name('ShowDiplomas');
 Route::get('client/ShowDiplomaDetails/{ShowDiplomaDetails}' , [ClientController::class , 'ShowDiplomaDetails'])->name('ShowDiplomaDetails');
+// Show Tasks' Details
+Route::get('client/taskcategories{taskcategories}' , [ClientController::class , 'ShowTaskCategories'])->name('taskcategories');
 
 // Routes for Groups and its Details
 Route::get('client/ShowGroups' , [ClientController::class , 'ShowGroups'])->name('ShowGroups');

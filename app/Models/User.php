@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Admin\Group;
+use App\Models\Admin\Session;
+use App\Models\Admin\SessionAttendance;
 use App\Models\Admin\SolvedTask;
 use App\Models\Admin\Task;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -67,5 +69,9 @@ class User extends Authenticatable
     public function task()
     {
         return $this->hasMany(Task::class, 'task_id' , 'id');
+    }
+    public function session()
+    {
+        return $this->belongsTo(Session::class, 'student_id' , 'id');
     }
 }

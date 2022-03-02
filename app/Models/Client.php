@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Admin\ClientDiplomas;
 use App\Models\Admin\Group;
 use App\Models\Admin\Round;
+use App\Models\Admin\Session;
 use App\Models\Admin\SolvedTask;
 use App\Models\Admin\Task;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -47,5 +48,9 @@ class Client extends Authenticatable
     public function students()
     {
         return $this->hasMany(User::class, 'client_id' , 'id');
+    }
+    public function sessions()
+    {
+        return $this->hasMany(Session::class, 'client_id' , 'id');
     }
 }

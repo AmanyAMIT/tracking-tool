@@ -7,6 +7,8 @@ use App\Models\Admin\ClientDiplomas;
 use App\Models\Admin\Group;
 use App\Models\Admin\SolvedTask;
 use App\Models\Admin\Task;
+use App\Models\Admin\TaskCategory;
+use App\Models\Client;
 use App\Models\Diploma;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,6 +17,7 @@ use PHPUnit\TextUI\XmlConfiguration\Groups;
 
 class ClientController extends Controller
 {
+
     // Methods for Diplomas and its Details
     public function ShowDiplomas()
     {
@@ -27,7 +30,15 @@ class ClientController extends Controller
     {
         $client_diplomas = ClientDiplomas::all();
         $diploma = Diploma::findOrFail($id);
-        return view('client.diplomas.ShowDiplomaDetails' , compact('diploma' , 'client_diplomas'));
+        $task_categories = TaskCategory::all();
+        return view('client.diplomas.ShowDiplomaDetails' , compact('diploma' , 'client_diplomas', 'task_categories'));
+    }
+
+    public function ShowTaskCategories($id)
+    {
+        $task_category = TaskCategory::findOrFail($id);
+        $tasks = Task::cursorPaginate(10);
+        return view('client.tasks.ShowTasksCategories' , compact('tasks' , 'task_category'));
     }
 
 
@@ -42,7 +53,8 @@ class ClientController extends Controller
     {
         $group = Group::findOrFail($id);
         $students = User::all();
-        return view('client.groups.ShowGroupDetails' , compact('group' , 'students'));
+        $diplomas = Diploma::all();
+        return view('client.groups.ShowGroupDetails' , compact('group' , 'students' , 'diplomas'));
     }
 
 
