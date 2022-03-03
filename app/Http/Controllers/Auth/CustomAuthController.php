@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\ClientDiplomas;
 use App\Models\Admin\Group;
 use App\Models\Admin\Task;
+use App\Models\Client;
 use App\Models\Diploma;
 use App\Models\User;
 use Illuminate\Http\Request;

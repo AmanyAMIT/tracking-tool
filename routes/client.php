@@ -8,8 +8,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('tracker', [CustomAuthController::class , 'tracker'])->middleware('auth:client')->name('tracker');
 
-Route::get('client/EditProfile/{EditProfile}' , [ClientLoginController::class , 'EditProfile'])->name('EditProfile');
-Route::post('client/UpdateProfile/{UpdateProfile}' , [ClientLoginController::class , 'UpdateProfile'])->name('UpdateProfile');
+Route::get('client/EditProfile/{EditProfile}' , [ClientController::class , 'EditProfile'])->name('EditProfile');
+Route::put('client/UpdateProfile/{UpdateProfile}' , [ClientController::class , 'UpdateProfile'])->name('UpdateProfile');
+
+Route::get("client/search", [ClientController::class , 'Search'])->name('search');
+Route::get("client/students", [ClientController::class , 'StudentSearch'])->name('StudentSearch');
+Route::get("client/groups", [ClientController::class , 'GroupSearch'])->name('GroupSearch');
 
 Route::get('client/login' , [ClientLoginController::class , 'ClientLogin'])->name('client.login');
 

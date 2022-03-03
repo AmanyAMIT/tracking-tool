@@ -22,7 +22,6 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
         $students = User::cursorPaginate(5);
         return view('admin.students.AllStudent' , compact('students'));
     }

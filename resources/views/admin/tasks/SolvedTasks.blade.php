@@ -30,15 +30,15 @@
                                 <td class="table-plus">{{$solvedTask->diploma->name}}</td>
                                 @if ($solvedTask->status == 0)
                                 <td class="table-plus">
-                                    <button class="btn btn-warning">Pending</button>
+                                    <span class="warning rounded p-1">Pending</span>
                                 </td>
                                 @elseif($solvedTask->status == 1)
                                 <td class="table-plus">
-                                    <button class="btn btn-success">Passed</button>
+                                    <span class="success rounded p-1">Passed</span>
                                 </td>
                                 @else
                                 <td class="table-plus">
-                                    <button class="btn btn-danger">Failed</button>
+                                    <span class="danger rounded p-1">Failed</span>
                                 </td>
                                 @endif
                                 <td>

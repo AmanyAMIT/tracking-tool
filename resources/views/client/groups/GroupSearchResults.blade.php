@@ -6,21 +6,14 @@
         <div class="min-height-200px">
             <div class="card-box mb-30">
                 <div class="pd-20">
-                    <h4 class="text-blue h4">Groups</h4>
+                    <h4 class="text-blue h4">Group</h4>
                 </div>
                 <div class="pb-20">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6 ml-3 mb-3">
-                            <form action="{{route('GroupSearch')}}" method="GET" class="navbar-search__form">
-                                    <div class="search"> <input type="text" name="search" class="search-input" placeholder="Search"> <button class="search-icon"> <i class="icon-copy dw dw-search"></i> </button> </div>
-                                </form>
-                        </div>
-                    </div>
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">Group's Name</th>
-                                <th class="table-plus datatable-nosort">Diploam</th>
+                                <th class="table-plus datatable-nosort">Diploma</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>
                         </thead>
@@ -42,7 +35,7 @@
                                 </td>
                             </tr>
                             @endif
-                            @endforeach
+                    @endforeach
                         </tbody>
                     </table>
                 </div>

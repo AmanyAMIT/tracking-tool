@@ -13,11 +13,23 @@ use App\Models\Diploma;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PHPUnit\TextUI\XmlConfiguration\Groups;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
 
+    public function EditProfile($id){
+        $client = Client::findOrFail($id);
+        return view('client.EditProfile' , compact('client'));
+    }
+    public function UpdateProfile(Request $request , $id){
+        $client = Client::findOrFail($id);
+        $client->name = $request->input('name');
+        $client->email = $request->input('email');
+        $client->password = Hash::make($request->input('password'));
+        $client->update();
+        return redirect()->back()->with(['toast_success' => 'Profile was updated']);
+    }
     // Methods for Diplomas and its Details
     public function ShowDiplomas()
     {
@@ -90,5 +102,40 @@ class ClientController extends Controller
         return view('client.tasks.ShowTaskDetails' , compact('task' , 'solved_tasks' , 'solved_task_count'));
     }
 
+    public function Search(Request $request)
+    {
+        $request->validate([
+            'search' => 'required'
+        ]);
+        $search = $request->input('search');
+        // dd($search);
+        $diplomas = Diploma::where('name','LIKE','%' . $search . '%')->orWhere('hours','like',"%$search%")->get();
+        $client_diplomas = ClientDiplomas::all();
+        // dd($products);
+        return view('client.diplomas.DiplomaSearchResults' , compact('diplomas' , 'client_diplomas'));
+    }
 
+    public function StudentSearch(Request $request)
+    {
+        $request->validate([
+            'search' => 'required'
+        ]);
+        $search = $request->input('search');
+        // dd($search);
+        $students = User::where('name','LIKE','%' . $search . '%')->orWhere('email','LIKE',"%" . $search . '%')->get();
+        // dd($products);
+        return view('client.students.StudentSearchResults' , compact('students'));
+    }
+
+    public function GroupSearch(Request $request)
+    {
+        $request->validate([
+            'search' => 'required'
+        ]);
+        $search = $request->input('search');
+        // dd($search);
+        $groups = Group::where('group_name','LIKE','%' . $search . '%')->get();
+        // dd($products);
+        return view('client.groups.GroupSearchResults' , compact('groups'));
+    }
 }

@@ -28,6 +28,7 @@ class ClientLoginController extends Controller
 
         return back()->withInput($request->only('email'));
     }
+
     public function EditProfile($id){
         $client = Client::findOrFail($id);
         return view('client.EditProfile' , compact('client'));
@@ -39,4 +40,5 @@ class ClientLoginController extends Controller
         $client->update();
         return redirect()->route("tracker")->with(['success' => 'Profile was updated']);
     }
+
 }

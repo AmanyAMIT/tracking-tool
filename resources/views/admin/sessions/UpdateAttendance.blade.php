@@ -37,15 +37,16 @@
                                 <div class="right">
                                     <div class="pricing-price">
                                         <input type="checkbox" name="status[]" value="1">Attend
+                                        <input type="checkbox" name="status[]" value="0">Absent
                                         {{-- <input type="checkbox" class="switch-btn" data-size="small" data-color="#28a745" name="status[]"> --}}
                                     </div>
+                                    <input type="hidden" value="{{$session->id}}" name="SessionAttendance[]">
                                 </div>
                             </div>
                         </div>
                     </div>
                         @endif
                     @endforeach
-                    <input type="hidden" value="{{$session->id}}" name="session_id[]">
                 </div>
                 <input type="submit" value="Update Attendance" class="btn btn-primary btn-wide mt-5 ml-3">
                 </form>

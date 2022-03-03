@@ -10,32 +10,25 @@
     <div class="menu-block customscroll">
         <div class="sidebar-menu">
             <ul id="accordion-menu">
-                <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle">
+                <li>
+                    <a href="{{route('ShowDiplomas')}}" class="dropdown-toggle">
                         <span class="micon dw dw-list3"></span><span class="mtext">Diplomas</span>
                     </a>
-                    <ul class="submenu">
-                        <li><a href="javascript:;">All Diplomas</a></li>
-                        <li class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon fa fa-plug"></span><span class="mtext">Fullstack PHP</span>
-                            </a>
-                            <ul class="submenu child">
-                                <li>
-                                    <a href="javascript:;" class="dropdown-toggle">
-                                        <span class="mtext">Group 1</span>
-                                    </a>
-                                    <ul class="submenu child">
-                                        <li>
-                                            <a href="javascript:;">Round 1</a>
-                                            
-                                        </li>
-                                        <li><a href="javascript:;">Round 2</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <li>
+                        <a href="{{route('ShowStudents')}}" class="dropdown-toggle">
+                            <span class="micon dw dw-group"></span><span class="mtext">Students</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('ShowGroups')}}" class="dropdown-toggle">
+                            <span class="micon dw dw-user-11"></span><span class="mtext">Groups</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('ShowTasks')}}" class="dropdown-toggle">
+                            <span class="micon dw dw-list"></span><span class="mtext">Tasks</span>
+                        </a>
+                    </li>
                 </li>
             </ul>
         </div>

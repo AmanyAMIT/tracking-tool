@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('diploma_id');
             $table->integer('group_id');
             $table->integer('student_id');
-            $table->integer('status');
+            // $table->integer('status');
             $table->timestamps();
         });
     }

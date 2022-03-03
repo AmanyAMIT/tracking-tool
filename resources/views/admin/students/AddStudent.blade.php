@@ -106,6 +106,9 @@
                         </section>
                         <input type="submit" value="Add Student" class="btn btn-primary btn-wide mt-5 ml-3">
                     </form>
+                    <div class="row">
+                        @include('sweetalert::alert')
+                    </div>
                 </div>
         </div>
     </div>

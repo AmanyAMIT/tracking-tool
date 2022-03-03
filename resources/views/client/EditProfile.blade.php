@@ -1,9 +1,10 @@
-@extends('layouts.admin')
+@extends('layouts.client')
 @section('title')
     - Your Profile
 @endsection
 @section('content')
-    <div class="main-container">
+@if (Auth::guard('client')->user()->id == $client->id)
+        <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
                 <div class="page-header">
@@ -19,7 +20,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
                         <div class="pd-20 card-box height-100-p">
                             <div class="profile-photo">
-                                <img src="{{ URL::asset('AdminPanel/vendors/images/programmer.jpg') }}" alt=""
+                                <img src="{{ URL::asset('ClientPanel/src/images/product-img4.jpg') }}" alt=""
                                     class="avatar-photo">
                                 <div class="modal fade" id="modal" tabindex="-1" role="dialog"
                                     aria-labelledby="modalLabel" aria-hidden="true">
@@ -52,17 +53,18 @@
                                 <div class="tab height-100-p">
                                     <ul class="nav nav-tabs customtab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#setting"
+                                            <a class="nav-link active" href="#setting"
                                                 role="tab">Settings</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content">
                                         <!-- Setting Tab start -->
-                                        <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
+                                        <div class="height-100-p">
                                             <div class="profile-setting">
                                                 <form method="POST" action="{{ route('UpdateProfile', $client->id) }}">
-                                                    @csrf
                                                     {{ method_field('PUT') }}
+                                                    @csrf
+                                                    
                                                     <ul class="profile-edit-list row">
                                                         <li class="weight-500 col-md-6">
                                                             <h4 class="text-blue h5 mb-20">Your Name</h4>
@@ -86,12 +88,28 @@
                                                                         @enderror
                                                             </div>
                                                         </li>
-                                                        <div class="form-group mb-0 ml-3">
-                                                            <input type="submit" class="btn btn-primary"
-                                                                value="Update Information">
-                                                        </div>
+                                                        <li class="weight-500 col-md-6">
+
+                                                            <div class="form-group">
+                                                                <label>Password</label>
+                                                                <input class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" type="password">
+                                                                    <p class="text-danger font-14 font-weight-bolder"></p>
+                                                                    @error('password')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                        @enderror
+                                                            </div>
+                                                        </li>
+                                                                <div class="form-group mb-0 ml-3 col-md-6">
+                                                                    <input type="submit" class="btn btn-primary"
+                                                                        value="Update Information">
+                                                            </div>
                                                     </ul>
                                                 </form>
+                                                <div class="row">
+                                                    @include('sweetalert::alert')
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- Setting Tab End -->
@@ -106,4 +124,6 @@
         </div>
     </div>
     </div>
+@endif
+
 @endsection

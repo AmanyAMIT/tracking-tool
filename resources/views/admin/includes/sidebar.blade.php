@@ -56,7 +56,6 @@
                     <ul class="submenu">
                         <li><a href="{{route('groups.index')}}">All Groups</a></li>
                         <li><a href="{{route('groups.create')}}">Add Group</a></li>
-                        {{-- <li><a href="{{route('rounds.create')}}">Add Round</a></li> --}}
                     </ul>
                 </li>
                 <li>

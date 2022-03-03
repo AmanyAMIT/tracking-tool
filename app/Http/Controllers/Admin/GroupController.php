@@ -19,7 +19,6 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
         $groups = Group::cursorPaginate(5);
         return view('admin.groups.AllGroups' , compact('groups'));
     }
