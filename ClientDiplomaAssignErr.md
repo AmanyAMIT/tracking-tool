@@ -3,6 +3,13 @@
     Diplomas
     ClientDiplomas
 
+##### Controller ######
+    Admin
+        ClientDiplomaController
+
+##### Route #####
+    admin
+
 ###### Models ######
     Client -> with a relationship of hasMany with Diploma
     Diploma -> with a relationshop of hasMany with Client
