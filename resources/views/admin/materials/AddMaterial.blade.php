@@ -26,7 +26,7 @@
                             @csrf
                             <h5>General Details</h5>
                             <section>
-                                <div class="row">
+                                <div class="row align-items-center">
 
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -40,20 +40,27 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mt-4">
                                         <div class="form-group">
-                                            <label>Documentation :</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input"
+                                            {{-- <div class="custom-file">
+                                                <label class="custom-file-label">
+                                                    <input type="file" class="custom-file-input">
+                                                </label>
                                                     @error('material_docs') is-invalid @enderror name="material_docs">
                                                 @error('material_docs')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
-                                                <label class="custom-file-label">Choose file</label>
-                                            </div>
-
+                                            </div> --}}
+                                            <input type="file" id="real-file" hidden="hidden" name="material_docs" @error('material_docs') is-invalid @enderror/>
+                                                <button type="button" id="custom-button">Browse</button>
+                                                <span id="custom-text">No file chosen, yet.</span>
+                                                @error('material_docs')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -87,4 +94,24 @@
                 </div>
             </div>
         </div>
+        <script>
+            const realFileBtn = document.getElementById("real-file");
+const customBtn = document.getElementById("custom-button");
+const customTxt = document.getElementById("custom-text");
+
+customBtn.addEventListener("click", function() {
+  realFileBtn.click();
+});
+
+realFileBtn.addEventListener("change", function() {
+  if (realFileBtn.value) {
+    customTxt.innerHTML = realFileBtn.value.match(
+      /[\/\\]([\w\d\s\.\-\(\)]+)$/
+    )[1];
+  } else {
+    customTxt.innerHTML = "No file chosen, yet.";
+  }
+});
+
+        </script>
     @endsection

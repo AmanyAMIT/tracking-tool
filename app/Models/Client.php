@@ -32,10 +32,6 @@ class Client extends Authenticatable
         return $this->hasMany(Group::class, 'client_id' , 'id');
     }
 
-    public function clientDiploma()
-    {
-        return $this->belongsTo(ClientDiplomas::class, 'client_id' , 'id');
-    }
     public function solvedTasks()
     {
         return $this->hasMany(SolvedTask::class, 'client_id' , 'id');

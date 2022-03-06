@@ -10,17 +10,20 @@
 @section('content')
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
+            <form action="{{route('updateAttendance')}}" method="POST">
 			<div class="min-height-200px">
                 <div class="page-header">
-                    <div class="row">
+                    <div class="row justify-content-between align-items-center">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
                                 <h4 class="text-capitalize text-bold text-primary font-30">{{ $session->name }} Session's Attendance</h4>
                             </div>
                         </div>
+                        <div class="col-md-3 col-sm-12">
+                            <input type="submit" value="Update Attendance" class="btn btn-primary btn-wide ml-3">
+                        </div>
                     </div>
                 </div>
-                <form action="{{route('updateAttendance')}}" method="POST">
                     {{-- {{method_field('PUT')}} --}}
                     @csrf
                     <div class="row">
@@ -36,9 +39,16 @@
                                 </div>
                                 <div class="right">
                                     <div class="pricing-price">
-                                        <input type="checkbox" name="status[]" value="1">Attend
-                                        <input type="checkbox" name="status[]" value="0">Absent
-                                        {{-- <input type="checkbox" class="switch-btn" data-size="small" data-color="#28a745" name="status[]"> --}}
+                                        <div class="wrapper">
+                                            <div class="switch_box box_4">
+                                                <div class="input_wrapper">
+                                                    <input type="checkbox" class="switch_4" name="status[]">
+                                                    <i class="icon-copy dw dw-enter is_checked"></i>
+                                                    <i class="icon-copy dw dw-logout1 is_unchecked"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <input type="hidden" value="{{$session->id}}" name="SessionAttendance[]">
                                 </div>
@@ -48,12 +58,11 @@
                         @endif
                     @endforeach
                 </div>
-                <input type="submit" value="Update Attendance" class="btn btn-primary btn-wide mt-5 ml-3">
-                </form>
-                <div class="row">
-                    @include('sweetalert::alert')
-                </div>
             </div>
+        </form>
+        <div class="row">
+            @include('sweetalert::alert')
+        </div>
         </div>
     </div>
 	<!-- js -->

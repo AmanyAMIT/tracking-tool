@@ -17,10 +17,10 @@ class ClientDiplomas extends Model
 
     public function diplomas()
     {
-        return $this->hasMany(Diploma::class, 'diploma_id' , 'id');
+        return $this->belongsToMany(Diploma::class, 'diploma_id' , 'id');
     }
     public function clients()
     {
-        return $this->hasMany(Client::class, 'client_id' , 'id');
+        return $this->belongsToMany(Client::class, 'client_id' , 'id');
     }
 }

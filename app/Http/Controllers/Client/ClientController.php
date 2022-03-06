@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\ClientDiplomas;
 use App\Models\Admin\Group;
+use App\Models\Admin\SessionAttendance;
 use App\Models\Admin\SolvedTask;
 use App\Models\Admin\Task;
 use App\Models\Admin\TaskCategory;
@@ -34,7 +35,7 @@ class ClientController extends Controller
     public function ShowDiplomas()
     {
         $client_diplomas = ClientDiplomas::all();
-        $diplomas = Diploma::cursorPaginate(4);
+        $diplomas = Diploma::cursorPaginate(10);
         return view('client.diplomas.ShowDiplomas' , compact('diplomas' , 'client_diplomas'));
     }
 
@@ -57,7 +58,7 @@ class ClientController extends Controller
     // Methods for Groups and its Details
     public function ShowGroups()
     {
-        $groups = Group::cursorPaginate(4);
+        $groups = Group::cursorPaginate(10);
         return view('client.groups.ShowGroups' , compact('groups'));
     }
 
@@ -73,7 +74,7 @@ class ClientController extends Controller
     // Methods for Students and its Details
     public function ShowStudents()
     {
-        $students = User::cursorPaginate(4);
+        $students = User::cursorPaginate(10);
         return view('client.students.ShowStudents' , compact('students'));
     }
 
@@ -81,14 +82,15 @@ class ClientController extends Controller
     {
         $student = User::findOrFail($id);
         $solved_tasks = SolvedTask::all();
-        return view('client.students.ShowStudentDetails' , compact('student' , 'solved_tasks'));
+        $attendances = SessionAttendance::all();
+        return view('client.students.ShowStudentDetails' , compact('student' , 'solved_tasks' , 'attendances'));
     }
 
 
     // Methods for Tassk and its Details
     public function ShowTasks()
     {
-        $tasks = Task::cursorPaginate(4);
+        $tasks = Task::cursorPaginate(10);
         return view('client.tasks.ShowTasks' , compact('tasks'));
     }
 

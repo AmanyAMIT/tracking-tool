@@ -59,7 +59,7 @@ class DiplomaController extends Controller
         $diploma->hours = $request->input('hours');
         // $diploma->client_id = $request->input('client_id');
         $diploma->save();
-        return redirect()->route("diploma.index")->with(['toast_success' => 'New Diploma was added']);
+        return redirect()->route("diplomas.index")->with(['toast_success' => 'New Diploma was added']);
     }
 
     /**

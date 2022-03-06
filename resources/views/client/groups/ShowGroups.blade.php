@@ -45,6 +45,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="container text-center ms-auto mt-5">
+                        {{ $groups->links() }}
+                    </div>
                 </div>
             </div>
         </div>

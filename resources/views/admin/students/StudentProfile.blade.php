@@ -72,6 +72,10 @@
                                                 role="tab">Timeline</a>
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#attendance"
+                                                role="tab">Attendance</a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Pedning
                                                 Tasks</a>
                                         </li>
@@ -122,6 +126,41 @@
                                             </div>
                                         </div>
                                         <!-- Timeline Tab End -->
+                                        <div class="tab-pane fade" id="attendance" role="tabpanel">
+                                            <div class="pd-20 profile-task-wrap">
+                                                <div class="container pd-0">
+                                                        <table class="table stripe hover nowrap">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="table-plus datatable-nosort">Session</th>
+                                                                    <th class="table-plus datatable-nosort">Date</th>
+                                                                    <th class="table-plus datatable-nosort">Status</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($SessionAttendances as $SessionAttendance)
+                                                                @if ($SessionAttendance->student_id == $student->id)
+                                                                <tr>
+                                                                    <td class="table-plus">{{$SessionAttendance->session->name}}</td>
+                                                                    <td>{{$SessionAttendance->session->date}}</td>
+                                                                    @if ($SessionAttendance->status == 0)
+                                                                        <td>
+                                                                            <span class="danger rounded p-1 text-white">Absent</span>
+                                                                        </td>
+                                                                    @else
+                                                                        <td>
+                                                                            <span class="success rounded p-1 text-white">Attend</span>
+                                                                        </td>
+                                                                    @endif
+                                                                    
+                                                                </tr>
+                                                                @endif
+                                                        @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!-- Setting Tab start -->
                                         <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
                                             <div class="profile-setting">

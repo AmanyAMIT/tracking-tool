@@ -51,7 +51,7 @@
                                             <option value="{{$diploma->id}}">{{$diploma->name}}</option>
                                         @endforeach
                                         </select>
-                                    <input type="submit" value="Add Diploma" class="btn btn-primary btn-wide mt-5">
+                                    <input type="submit" value="Add Group" class="btn btn-primary btn-wide mt-5">
                                 </div>
                                 </div>
                             </div>

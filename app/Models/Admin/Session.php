@@ -17,7 +17,7 @@ class Session extends Model
         'client_id',
         'diploma_id',
         'group_id',
-        'student_id',
+        // 'student_id',
         // 'status'
     ];
 

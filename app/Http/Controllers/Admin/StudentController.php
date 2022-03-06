@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Group;
+use App\Models\Admin\SessionAttendance;
 use App\Models\Admin\SolvedTask;
 use App\Models\Admin\Task;
 use App\Models\Client;
@@ -85,8 +86,9 @@ class StudentController extends Controller
         $student = User::findOrFail($id);
         $tasks = Task::cursorPaginate(5);
         $solvedTasks = SolvedTask::paginate(5);
+        $SessionAttendances = SessionAttendance::cursorPaginate(5);
         // $solvedTasks = SolvedTask::all();
-        return view('admin.students.StudentProfile' , compact('student' , 'tasks' , 'solvedTasks'));
+        return view('admin.students.StudentProfile' , compact('student' , 'tasks' , 'solvedTasks' , 'SessionAttendances'));
     }
 
     /**

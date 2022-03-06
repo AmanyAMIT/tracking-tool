@@ -24,20 +24,15 @@
                                 <div class="col-md-6 text-left">
                                     <div class="form-group">
                                         <label>Client</label>
-                                        <select class="form-control @error('client_id') is-invalid @enderror" name="client_id">
+                                        <select class="form-control" name="ClientDiplomas[]">
                                             @foreach($clients as $client)
                                                 <option value="{{ $client->id }}">{{ $client->name }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                        @error('client_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6 text-left">
+                                {{-- <div class="col-md-6 text-left">
                                     <div class="form-group">
                                         <label>Diploma</label>
                                         <select class="form-control @error('diploma_id') is-invalid @enderror" name="diploma_id">
@@ -51,6 +46,16 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                             @enderror
+                                    </div>
+                                </div> --}}
+                                <div class="col-md-6 text-left">
+                                    <div class="form-group">
+                                        <label>Assign to Diploma</label>
+                                        <select class="custom-select2 form-control" multiple="multiple" style="width: 100%;" name="diploma_id[]">
+                                            @foreach($diplomas as $diploma)
+                                                <option value="{{$diploma->id}}">{{$diploma->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>

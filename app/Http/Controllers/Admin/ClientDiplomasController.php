@@ -43,22 +43,14 @@ class ClientDiplomasController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $validator = Validator::make($request->all() , [
-            'diploma_id' => ['required'],
-            'client_id' => ['required']
-        ]);
-        if($validator->fails())
-        {
-            return redirect()->back()->withErrors($validator)->withInput($request->all());
-        }
-        $clientDiploma = new ClientDiplomas();
-        $clientDiploma->diploma_id = $request->input('diploma_id');
-        $clientDiploma->client_id = $request->input('client_id');
-        $clientDiploma->save();
+        foreach($request->ClientDiplomas as $key=>$ClientDiplomas) {
+            $data = new ClientDiplomas();
+            $data->client_id = $ClientDiplomas;
+            $data->diploma_id = $request->diploma_id[$key];
+            $data->save();
         return redirect()->back()->with(['toast_success' => 'Successful Assignment']);
     }
-
+}
     /**
      * Display the specified resource.
      *

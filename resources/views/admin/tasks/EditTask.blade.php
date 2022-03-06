@@ -41,7 +41,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Description :</label>
-                                        <input type="text" class="form-control" name="descriptions" value="{{$task->desciptions}}">
+                                        <input type="text" class="form-control" name="descriptions" value="{{$task->descriptions}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

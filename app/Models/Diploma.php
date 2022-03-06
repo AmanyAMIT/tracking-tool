@@ -24,13 +24,9 @@ class Diploma extends Model
         'hours'
     ];
 
-    public function client()
+    public function clients()
     {
-        return $this->belongsTo(Client::class, 'client_id' , 'id');
-    }
-    public function clientDiploma()
-    {
-        return $this->belongsTo(ClientDiplomas::class, 'diploma_id' , 'id');
+        return $this->hasMany(Client::class, 'client_id' , 'id');
     }
 
     public function taskcategories()
