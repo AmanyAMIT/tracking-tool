@@ -24,7 +24,18 @@
                                 <div class="col-md-6 text-left">
                                     <div class="form-group">
                                         <label>Client</label>
-                                        <select class="form-control" name="ClientDiplomas[]">
+                                        <select class="form-control" name="client_id[]">
+                                            @foreach($clients as $client)
+                                                <option value="{{ $client->id }}">{{ $client->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <div class="form-group">
+                                        <label>Client</label>
+                                        <select class="form-control" name="client_id[]">
                                             @foreach($clients as $client)
                                                 <option value="{{ $client->id }}">{{ $client->name }}
                                                 </option>
@@ -48,6 +59,16 @@
                                             @enderror
                                     </div>
                                 </div> --}}
+                                <div class="col-md-6 text-left">
+                                    <div class="form-group">
+                                        <label>Assign to Diploma</label>
+                                        <select class="custom-select2 form-control" multiple="multiple" style="width: 100%;" name="diploma_id[]">
+                                            @foreach($diplomas as $diploma)
+                                                <option value="{{$diploma->id}}">{{$diploma->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-md-6 text-left">
                                     <div class="form-group">
                                         <label>Assign to Diploma</label>

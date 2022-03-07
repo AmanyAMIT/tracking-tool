@@ -23,7 +23,7 @@ class ClientController extends Controller
     public function index()
     {
         //
-        $clients = Client::cursorPaginate(5);
+        $clients = Client::cursorPaginate(10);
         return view('admin.clients.AllClient' , compact('clients'));
     }
 

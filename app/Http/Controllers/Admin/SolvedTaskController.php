@@ -18,7 +18,7 @@ class SolvedTaskController extends Controller
     public function index()
     {
         //
-        $solvedTasks = SolvedTask::cursorPaginate(5);
+        $solvedTasks = SolvedTask::cursorPaginate(10);
         return view('admin.tasks.SolvedTasks' , compact('solvedTasks'));
     }
 

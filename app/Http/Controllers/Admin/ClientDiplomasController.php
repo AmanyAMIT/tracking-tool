@@ -43,13 +43,21 @@ class ClientDiplomasController extends Controller
      */
     public function store(Request $request)
     {
-        foreach($request->ClientDiplomas as $key=>$ClientDiplomas) {
+        foreach($request->client_id as $key=>$client_id) {
             $data = new ClientDiplomas();
-            $data->client_id = $ClientDiplomas;
+            $data->client_id = $client_id;
             $data->diploma_id = $request->diploma_id[$key];
             $data->save();
+        }
+        // foreach ($request->client_id as $key => $client_id)
+        // {       
+        //     $data = [
+        //         'client_id' => $client_id [$key],
+        //         'diploma_id' => $request->diploma_id [$key]
+        //         ];
+        //     ClientDiplomas::create($data);}
         return redirect()->back()->with(['toast_success' => 'Successful Assignment']);
-    }
+    
 }
     /**
      * Display the specified resource.

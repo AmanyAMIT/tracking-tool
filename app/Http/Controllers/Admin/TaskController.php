@@ -22,7 +22,7 @@ class TaskController extends Controller
     public function index()
     {
         //
-        $tasks = Task::cursorPaginate(5);
+        $tasks = Task::cursorPaginate(10);
         $categories = TaskCategory::all();
         $diplomas = Diploma::all();
         $clients = Client::all();

@@ -18,7 +18,7 @@ class TaskCategoryController extends Controller
     public function index()
     {
         //
-        $categories = TaskCategory::cursorPaginate(5);
+        $categories = TaskCategory::cursorPaginate(10);
         return view('admin.tasksCategories.AllCategories' , compact('categories'));
     }
 

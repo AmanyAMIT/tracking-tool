@@ -18,7 +18,7 @@ class DiplomaController extends Controller
     public function index()
     {
         //
-        $diplomas = Diploma::cursorPaginate(5);
+        $diplomas = Diploma::cursorPaginate(10);
         return view('admin.diplomas.AllDiplomas' , compact('diplomas'));
     }
 

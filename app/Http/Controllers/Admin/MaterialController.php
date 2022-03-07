@@ -19,7 +19,7 @@ class MaterialController extends Controller
     public function index()
     {
         //
-        $materials = Material::cursorPaginate(5);
+        $materials = Material::cursorPaginate(10);
         return view('admin.materials.AllMaterials' , compact('materials'));
     }
 

@@ -19,7 +19,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $groups = Group::cursorPaginate(5);
+        $groups = Group::cursorPaginate(10);
         return view('admin.groups.AllGroups' , compact('groups'));
     }
 
@@ -85,7 +85,10 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        //
+        $group = Group::findOrFail($id);
+        $clients = Client::all();
+        $diplomas = Diploma::all();
+        return view('admin.groups.EditGroup' , compact('group','clients','diplomas'));
     }
 
     /**
@@ -98,6 +101,12 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $group = Group::findOrFail($id);
+        $group->group_name = $request->input('group_name');
+        $group->client_id = $request->input('client_id');
+        $group->diploma_id = $request->input('diploma_id');
+        $group->save();
+        return redirect()->route("groups.index")->with(['toast_success' => 'Group was updated']);
     }
 
     /**
