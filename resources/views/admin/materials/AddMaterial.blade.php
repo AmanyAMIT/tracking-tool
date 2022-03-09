@@ -42,17 +42,6 @@
                                     </div>
                                     <div class="col-md-6 mt-4">
                                         <div class="form-group">
-                                            {{-- <div class="custom-file">
-                                                <label class="custom-file-label">
-                                                    <input type="file" class="custom-file-input">
-                                                </label>
-                                                    @error('material_docs') is-invalid @enderror name="material_docs">
-                                                @error('material_docs')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div> --}}
                                             <input type="file" id="real-file" hidden="hidden" name="material_docs" @error('material_docs') is-invalid @enderror/>
                                                 <button type="button" id="custom-button">Browse</button>
                                                 <span id="custom-text">No file chosen, yet.</span>

@@ -34,11 +34,17 @@
                                 </td>
                                 @elseif($solvedTask->status == 1)
                                 <td class="table-plus">
-                                    <span class="success rounded p-1">Passed</span>
+                                    <span class="success rounded p-1 text-white">Passed</span>
                                 </td>
-                                @else
+                                @elseif($solvedTask->status == 2)
                                 <td class="table-plus">
-                                    <span class="danger rounded p-1">Failed</span>
+                                    <span class="danger rounded p-1 text-white">Failed</span>
+                                    @else
+                                <td>
+                                    <span class="danger rounded p-1 text-white">Failed</span>
+                                    <span class="warning rounded p-1 text-white">New Submission</span>
+                                </td>
+                                    
                                 </td>
                                 @endif
                                 <td>
@@ -48,8 +54,6 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                             <a class="dropdown-item" href="{{route('solvedTasks.show' , $solvedTask->id)}}"><i class="dw dw-eye"></i> View</a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
                                         </div>
                                     </div>
                                 </td>

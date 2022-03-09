@@ -12,17 +12,17 @@
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
 					<li>
-						<a href="calendar.html" class="dropdown-toggle no-arrow">
+						<a href="{{route('StudentAttendance')}}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-meeting"></span><span class="mtext">Attendance</span>
 						</a>
 					</li>
 					<li>
-						<a href="javascript:;" class="dropdown-toggle no-arrow">
+						<a href="{{route('StudentMaterial')}}" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-attachment"></span><span class="mtext">Materials</span>
                         </a>
 					</li>
 					<li>
-						<a href="javascript:;" class="dropdown-toggle no-arrow">
+						<a href="{{route('StudentTopicsTasks')}}" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-list"></span><span class="mtext">Tasks</span>
                         </a>
 					</li>

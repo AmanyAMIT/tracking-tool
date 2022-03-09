@@ -15,7 +15,7 @@
                     <span class="user-name">{{Auth::user()->name}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list" style="">
-                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+                    <a class="dropdown-item" href="{{route('StudentProfileInfo' , Auth::user()->id)}}"><i class="dw dw-user1"></i> Profile</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"  
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"><i class="dw dw-logout"></i> Log Out</a>

@@ -15,7 +15,9 @@ class SolvedTask extends Model
     protected $fillable = [
         'user_id',
         'task_id',
+        'task_file',
         'status',
+        'score',
         'comments',
         'client_id',
         'diploma_id'

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('task_id');
             $table->mediumText('task_file');
             $table->integer('status')->default('0');
+            $table->integer('score');
             $table->string('comments');
             $table->integer('client_id');
             $table->integer('diploma_id');

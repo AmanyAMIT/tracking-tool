@@ -70,7 +70,6 @@ class SolvedTaskController extends Controller
      */
     public function show($id)
     {
-        //
         $solvedTask = SolvedTask::findOrFail($id);
         return view('admin.tasks.SolvedTaskDetails' , compact('solvedTask'));
     }
@@ -98,17 +97,19 @@ class SolvedTaskController extends Controller
     public function update(Request $request, $id)
     {
         //
-        // $validator = Validator::make($request->all() , [
-        //     'status' => ['required'],
-        //     'comment' => ['required']
-        // ]);
-        // if($validator->fails())
-        // {
-        //     return redirect()->back()->withErrors($validator)->withInput($request->all());
-        // }
+        $validator = Validator::make($request->all() , [
+            'status' => ['required'],
+            'comments' => ['required'],
+            'score' => ['required']
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
         $solvedTask = SolvedTask::findOrFail($id);
         $solvedTask->status = $request->input('status');
         $solvedTask->comments = $request->input('comments');
+        $solvedTask->score = $request->input('score');
         $solvedTask->update();
         return redirect()->back()->with(['toast_success' => 'Feedback was sent']);
     }

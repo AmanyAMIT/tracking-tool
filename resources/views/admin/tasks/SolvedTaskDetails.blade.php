@@ -35,6 +35,10 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label>Student Score:</label>
+                            <input class="form-control" type="number" name="score" id="score" min="0" max="10"> Out of {{$solvedTask->task->marks}}
+                        </div>
+                        <div class="form-group">
                             <label>Leave a Comment or Note</label>
                             <textarea class="form-control" name="comments"></textarea>
                         </div>
@@ -73,4 +77,10 @@
             </div>
         </div>
     </div>
+    <script>
+        let score = document.getElementById("score");
+        if(score.value == " "){
+            score.style.border = "1px solid #d4d4d4;";
+        }
+    </script>
 @endsection
