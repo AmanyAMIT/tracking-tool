@@ -10,6 +10,13 @@
                     <h4 class="text-blue h4">Submitted Tasks</h4>
                 </div>
                 <div class="pb-20">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 ml-3 mb-3">
+                            <form action="{{route('SolvedTaskSearch')}}" method="GET" class="navbar-search__form">
+                                    <div class="search"> <input type="text" name="search" class="search-input" placeholder="Search"> <button class="search-icon"> <i class="icon-copy dw dw-search"></i> </button> </div>
+                                </form>
+                        </div>
+                    </div>
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>

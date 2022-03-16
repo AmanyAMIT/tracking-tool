@@ -149,6 +149,6 @@ class TaskController extends Controller
         //
         $task = Task::findOrFail($id);
         $task->delete();
-        return redirect()->back()->with(['toast_success' => 'Task has been deleted']);
+        return redirect()->route('tasks.index')->with(['toast_success' => 'Task has been deleted']);
     }
 }

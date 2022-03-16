@@ -31,7 +31,9 @@ Route::put('student/ResubmitNewTask/{ResubmitNewTask}' , [IndexController::class
 Route::get('/', function () {
     return view('auth.login');
 });
-
+// Route::any('/register', function(){
+//     return redirect('/');
+// });
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

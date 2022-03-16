@@ -9,7 +9,7 @@
                     <h4 class="text-blue h4">Tasks</h4>
                 </div>
                 <div class="pb-20">
-                    <table class="data-table table stripe hover nowrap">
+                    <table class="table stripe hover nowrap">
                         <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">Task's Name</th>

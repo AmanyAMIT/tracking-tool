@@ -48,8 +48,7 @@ class IndexController extends Controller
         $solvedTasks = SolvedTask::all();
         $pendingStatus = DB::table('solved_tasks')->where('status' , '0')->where('task_id' , $task->id)->where('user_id' , Auth::user()->id)->get();
         $passedStatus = DB::table('solved_tasks')->where('status' ,'!=', '0')->where('task_id' , $task->id)->where('user_id' , Auth::user()->id)->get();
-        $TaskidExists = DB::table('solved_tasks')->where('task_id' , $task->id)->get();
-        //return $TaskidExists;
+        $TaskidExists = DB::table('solved_tasks')->where('task_id' , $task->id)->where('user_id' , Auth::user()->id)->get();
         return view('student.tasks.TaskDetails' , compact('task'  , 'solvedTasks' , 'pendingStatus' , 'passedStatus' , 'TaskidExists'));
     }
     public function TaskSubmisson(Request $request) {
@@ -63,7 +62,7 @@ class IndexController extends Controller
         $solvedTask = new SolvedTask();
         $solvedTask->user_id = Auth::user()->id;
         $solvedTask->task_id = $request->input('task_id');
-        $solvedTask->score = '0';
+        $solvedTask->score = "0";
         if($request->hasFile('task_file')){
             $file = $request->file('task_file');
             $name= $file->getClientOriginalName();
@@ -74,11 +73,12 @@ class IndexController extends Controller
         else{
             return $request;
             $solvedTask->task_file = '';
-    }
-        $solvedTask->status = '0';
+        }
+        $solvedTask->status = "0";
         $solvedTask->comments = "No comments yet";
         $solvedTask->diploma_id = $request->input('diploma_id');
         $solvedTask->client_id = $request->input('client_id');
+        //return $solvedTask;
         $solvedTask->save();
         return redirect()->back()->with(['toast_success' => 'Task was submitted, Good luck']);
     }

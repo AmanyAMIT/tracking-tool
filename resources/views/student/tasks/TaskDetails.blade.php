@@ -61,21 +61,21 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 pb-20">
                             <div class="product-detail-desc pd-20 card-box height-100-p">
                                 <h4 class="mb-20 pt-20">Description:</h4>
-                                <p>{{$solvedTask->task->descriptions}}</p>
+                                <p>{{$task->descriptions}}</p>
                                 <h4 class="mb-20 pt-20">Requirements:</h4>
-                                <p>{{$solvedTask->task->requirements}}</p>
-                                <p>{{$solvedTask->task->Description}}</p>
+                                <p>{{$task->requirements}}</p>
+                                <p>{{$task->Description}}</p>
                                 <h4 class="mb-20 pt-20">Marks:</h4>
-                                <p>{{$solvedTask->task->marks}}</p>
+                                <p>{{$task->marks}}</p>
                                 @if ($TaskidExists->isEmpty())
-                                    <a href="#submit" class="btn btn-primary btn-wide text-white">Ready to Submit?</a>
+                                    <a href="#submit" class="btn btn-primary btn-wide text-white" id="ReadyToSubmit">Ready to Submit?</a>
                 {{-- @endif --}}
                 </div>
                     </div>
                     @endif
                 
                 @if ($TaskidExists->isEmpty())
-                <div class="pd-20 card-box mb-30">
+                <div class="pd-20 card-box mb-30 hide" id="SubmissionForm">
                     <div class="clearfix" id="submit">
                         <h4 class="text-blue h4">Submit Task's Solution</h4>
                     </div>
@@ -119,6 +119,8 @@
     const realFileBtn = document.getElementById("real-file");
 const customBtn = document.getElementById("custom-button");
 const customTxt = document.getElementById("custom-text");
+let ReadyToSubmit = document.getElementById("ReadyToSubmit");
+let SubmissionForm = document.getElementById("SubmissionForm");
 
 customBtn.addEventListener("click", function() {
 realFileBtn.click();
@@ -133,6 +135,11 @@ customTxt.innerHTML = realFileBtn.value.match(
 customTxt.innerHTML = "No file chosen, yet.";
 }
 });
+
+ReadyToSubmit.addEventListener("click" , ShowSubmissionForm);
+function ShowSubmissionForm() {
+    SubmissionForm.classList.remove("hide");
+}
 
 </script>
 @endsection

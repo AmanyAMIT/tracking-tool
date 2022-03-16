@@ -86,9 +86,13 @@ class StudentController extends Controller
         $student = User::findOrFail($id);
         $tasks = Task::cursorPaginate(5);
         $solvedTasks = SolvedTask::paginate(5);
-        $SessionAttendances = SessionAttendance::cursorPaginate(5);
-        // $solvedTasks = SolvedTask::all();
+        $SessionAttendances = SessionAttendance::paginate(5);
         return view('admin.students.StudentProfile' , compact('student' , 'tasks' , 'solvedTasks' , 'SessionAttendances'));
+    }
+    public function ShowStudentSubmission($id)
+    {
+        $solvedTask = SolvedTask::findOrFail($id);
+        return view('admin.students.ShowStudentSubmission' , compact('solvedTask'));
     }
 
     /**
@@ -137,7 +141,6 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
         $user = User::findOrFail($id);
         $user->delete();
         return redirect()->back()->with(['toast_success' => 'User has been deleted']);

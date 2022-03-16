@@ -121,7 +121,7 @@ class SessionController extends Controller
 //         $session->update();
 return $request;
 
-        return redirect()->back()->with(['toast_success' => 'New Session was created']);
+        return redirect()->route('sessions.index')->with(['toast_success' => 'New Session was created']);
     }
 
     public function destroy($id)

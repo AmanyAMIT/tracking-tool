@@ -23,7 +23,7 @@ class SessionAttendanceController extends Controller
         }
         $data->save();
     }
-    return redirect()->back()->with(['toast_success' => 'Session Attendance was updated']);
+    return redirect()->route('sessions.index')->with(['toast_success' => 'Session Attendance was updated']);
     }
 
 }

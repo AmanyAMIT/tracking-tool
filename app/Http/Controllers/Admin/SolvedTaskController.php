@@ -59,7 +59,7 @@ class SolvedTaskController extends Controller
         $solvedTask->status = '0';
         $solvedTask->comments = 'No comment';
         $solvedTask->save();
-        return redirect()->back()->with(['toast_success' => 'Task was submitted']);
+        return redirect()->route('solvedTasks.index')->with(['toast_success' => 'Task was submitted']);
     }
 
     /**
@@ -111,17 +111,16 @@ class SolvedTaskController extends Controller
         $solvedTask->comments = $request->input('comments');
         $solvedTask->score = $request->input('score');
         $solvedTask->update();
-        return redirect()->back()->with(['toast_success' => 'Feedback was sent']);
+        return redirect()->route('solvedTasks.index')->with(['toast_success' => 'Feedback was sent']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function SolvedTaskSearch(Request $request)
     {
-        //
+        $request->validate([
+            'search' => 'required'
+        ]);
+        $search = $request->input('search');
+        $solvedTasks = SolvedTask::join('diplomas' , 'diplomas.id' , '=' , 'solved_tasks.diploma_id')->where('diplomas.name','LIKE','%' . $search . '%')->get();
+        return view('admin.tasks.SolvedTasksSearchResults' , compact('solvedTasks'));
     }
 }

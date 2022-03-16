@@ -31,6 +31,8 @@ Route::resource('/groups' , GroupController::class);
 Route::resource('/taskcategories' , TaskCategoryController::class);
 Route::resource('/tasks' , TaskController::class);
 Route::resource('/solvedTasks' , SolvedTaskController::class);
+Route::get('/solvedTaskseach' , [SolvedTaskController::class , 'SolvedTaskSearch'])->name('SolvedTaskSearch');
+Route::get('/solvedTasFeedback/{ShowStudentSubmission}' , [StudentController::class , 'ShowStudentSubmission'])->name('ShowStudentSubmission');
 Route::resource('/materials' , MaterialController::class);
 Route::get('/clinetDiplomad' , [ClientDiplomasController::class , 'create'])->name('StoreClientDiploma');
 Route::post('/assignNewDiploma' , [ClientDiplomasController::class , 'store'])->name('AssignNewDiploma');

@@ -215,7 +215,7 @@
                                                                 @if ($task->diploma_id == $student->diploma_id)
                                                                     <li>
                                                                         <div class="task-type-pending">
-                                                                            <a href="">{{ $task->name }}</a>
+                                                                            <a href="{{route('ShowStudentSubmission' , $task->id)}}">{{ $task->name }}</a>
                                                                         </div>
                                                                     </li>
                                                                 @endif
