@@ -9,7 +9,8 @@
                 <h4 class="text-blue h4">{{$solvedTask->user->name}}'s Solution</h4>
             </div>
             <div class="ml-5">
-                <p class="text-black">{{$solvedTask->task_file}}</p>
+                {{-- <p class="text-black">{{$solvedTask->task_file}}</p> --}}
+                <a class="dropdown-item" href="{{URL::asset('uploads/SolvedTasks/' . $solvedTask->task_file)}}" download><i class="icon-copy dw dw-download"></i> {{$solvedTask->task_file}}</a>
             </div>
         <div class="pd-ltr-20 xs-pd-20-10 pb-30">
             <div class="min-height-200px">
